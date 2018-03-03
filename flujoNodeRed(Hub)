@@ -1,0 +1,550 @@
+[
+    {
+        "id": "57db6e45.a019",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7319e10f.43ec9",
+        "type": "serial in",
+        "z": "57db6e45.a019",
+        "name": "sensor",
+        "serial": "da0dced1.95bbe",
+        "x": 220,
+        "y": 121,
+        "wires": [
+            [
+                "14a2e2a0.f4d7bd"
+            ]
+        ]
+    },
+    {
+        "id": "518c7129.03c62",
+        "type": "inject",
+        "z": "57db6e45.a019",
+        "name": "Sensor Time",
+        "topic": "time",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 241,
+        "wires": [
+            [
+                "f0f4ba55.a81f18",
+                "7da7a043.09d5f"
+            ]
+        ]
+    },
+    {
+        "id": "f0f4ba55.a81f18",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "before format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 441,
+        "y": 237,
+        "wires": []
+    },
+    {
+        "id": "7da7a043.09d5f",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format Time",
+        "func": "var res = {};\n\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 301,
+        "wires": [
+            [
+                "d1e1278f.9d3078",
+                "1d8f93de.cf328c"
+            ]
+        ]
+    },
+    {
+        "id": "a83601cf.38b1",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 734,
+        "y": 91,
+        "wires": []
+    },
+    {
+        "id": "d1e1278f.9d3078",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 671.0000381469727,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "1d8f93de.cf328c",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Merge 2 Messages ",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) \n{\n    case \"sensor movimiento\":\n        context.data.time = msg.payload;\n        msg = null;\n        break;\n        \n    case \"time\":\n        context.data.sensor = msg.payload;\n        msg = null;\n        break;\n    \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.time != null && context.data.sensor != null) \n{\n    res = {};\n    res.payload = {info:JSON.stringify(context.data.time), hora :JSON.stringify(context.data.sensor)};\n    res.topic = \"sensor movimiento\";\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 201,
+        "wires": [
+            [
+                "82f5a6a8.f5a4e8",
+                "269dd076.b2c49"
+            ]
+        ]
+    },
+    {
+        "id": "82f5a6a8.f5a4e8",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after merge",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1000,
+        "y": 241,
+        "wires": []
+    },
+    {
+        "id": "269dd076.b2c49",
+        "type": "mqtt out",
+        "z": "57db6e45.a019",
+        "name": "",
+        "topic": "alta/1/Andes/1/1",
+        "qos": "0",
+        "retain": "false",
+        "broker": "26096c87.076114",
+        "x": 1020,
+        "y": 161,
+        "wires": []
+    },
+    {
+        "id": "14a2e2a0.f4d7bd",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format To Alert1",
+        "func": "var res = {};\nvar sensorString;\n\nsensorString = msg.payload.trim(\" \");\n\nif(sensorString === \"Alerta1\")\n{\n    res.topic = \"sensor movimiento\";\n    res.payload = {};\n    res.payload = {\"alerta\": sensorString, \"place\": \"Casa 1\"}\n    return res;\n}\nelse\n{\n    \n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 462,
+        "y": 115,
+        "wires": [
+            [
+                "a83601cf.38b1",
+                "1d8f93de.cf328c"
+            ]
+        ]
+    },
+    {
+        "id": "23c88f7d.91f42",
+        "type": "inject",
+        "z": "57db6e45.a019",
+        "name": "Sensor Time",
+        "topic": "time",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 661,
+        "wires": [
+            [
+                "715d06c7.f34318",
+                "3380842b.fdb08c"
+            ]
+        ]
+    },
+    {
+        "id": "715d06c7.f34318",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "before format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 441,
+        "y": 657,
+        "wires": []
+    },
+    {
+        "id": "3380842b.fdb08c",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format Time",
+        "func": "var res = {};\n\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 444,
+        "y": 720,
+        "wires": [
+            [
+                "a0023ff4.f6006",
+                "2b3458b3.7bfc18"
+            ]
+        ]
+    },
+    {
+        "id": "d4386e97.408c9",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 734,
+        "y": 511,
+        "wires": []
+    },
+    {
+        "id": "a0023ff4.f6006",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 671.0000381469727,
+        "y": 770,
+        "wires": []
+    },
+    {
+        "id": "2b3458b3.7bfc18",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Merge 2 Messages  ",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) \n{\n    case \"sensor puerta abierta\":\n        context.data.time = msg.payload;\n        msg = null;\n        break;\n        \n    case \"time\":\n        context.data.sensor = msg.payload;\n        msg = null;\n        break;\n    \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.time != null && context.data.sensor != null) \n{\n    res = {};\n    res.payload = {info:JSON.stringify(context.data.time), hora :JSON.stringify(context.data.sensor)};\n    res.topic = \"sensor puerta abierta\";\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 793,
+        "y": 636,
+        "wires": [
+            [
+                "e4cdf023.6792b",
+                "5b9e911.62e257"
+            ]
+        ]
+    },
+    {
+        "id": "e4cdf023.6792b",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after merge",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1060,
+        "y": 661,
+        "wires": []
+    },
+    {
+        "id": "5b9e911.62e257",
+        "type": "mqtt out",
+        "z": "57db6e45.a019",
+        "name": "",
+        "topic": "alta/2/Andes/1/1",
+        "qos": "0",
+        "retain": "false",
+        "broker": "26096c87.076114",
+        "x": 1080,
+        "y": 581,
+        "wires": []
+    },
+    {
+        "id": "5d3e3f77.9e882",
+        "type": "inject",
+        "z": "57db6e45.a019",
+        "name": "Sensor Time",
+        "topic": "time",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 1101,
+        "wires": [
+            [
+                "890dbc25.2ffea",
+                "5312db9c.03ea44"
+            ]
+        ]
+    },
+    {
+        "id": "890dbc25.2ffea",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "before format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 430,
+        "y": 1081,
+        "wires": []
+    },
+    {
+        "id": "5312db9c.03ea44",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format Time",
+        "func": "var res = {};\n\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 404,
+        "y": 1160,
+        "wires": [
+            [
+                "cd1237be.2015d8",
+                "6c79cf31.b12b8"
+            ]
+        ]
+    },
+    {
+        "id": "fcb13468.765f48",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 694,
+        "y": 951,
+        "wires": []
+    },
+    {
+        "id": "cd1237be.2015d8",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after format",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 631.0000381469727,
+        "y": 1210,
+        "wires": []
+    },
+    {
+        "id": "6c79cf31.b12b8",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Merge 2 Messages ",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) \n{\n    case \"sensor clave incorrecta\":\n        context.data.time = msg.payload;\n        msg = null;\n        break;\n        \n    case \"time\":\n        context.data.sensor = msg.payload;\n        msg = null;\n        break;\n    \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.time != null && context.data.sensor != null) \n{\n    res = {};\n    res.payload = {info:JSON.stringify(context.data.time), hora :JSON.stringify(context.data.sensor)};\n    res.topic = \"sensor clave incorrecta\";\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 753,
+        "y": 1076,
+        "wires": [
+            [
+                "afffcdc.9a52e3",
+                "7c0b4bb1.613694"
+            ]
+        ]
+    },
+    {
+        "id": "afffcdc.9a52e3",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "after merge",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1020,
+        "y": 1101,
+        "wires": []
+    },
+    {
+        "id": "7c0b4bb1.613694",
+        "type": "mqtt out",
+        "z": "57db6e45.a019",
+        "name": "",
+        "topic": "alta/3/Andes/1/1",
+        "qos": "0",
+        "retain": "false",
+        "broker": "26096c87.076114",
+        "x": 1040,
+        "y": 1021,
+        "wires": []
+    },
+    {
+        "id": "8b673fa5.241f7",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format To Alert3",
+        "func": "var res = {};\n\nvar sensorString;\n\nsensorString = msg.payload.trim(\" \");\n\nif(sensorString === \"Alerta3\")\n{\n    res.topic = \"sensor clave incorrecta\";\n    res.payload = {};\n    res.payload = {\"alerta\": sensorString, \"place\": \"Casa 1\"}\n    return res;\n}\nelse\n{\n    \n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 981,
+        "wires": [
+            [
+                "fcb13468.765f48",
+                "6c79cf31.b12b8"
+            ]
+        ]
+    },
+    {
+        "id": "5714450b.13629c",
+        "type": "serial in",
+        "z": "57db6e45.a019",
+        "name": "sensor",
+        "serial": "89f0f270.11a75",
+        "x": 160,
+        "y": 541,
+        "wires": [
+            [
+                "2278d072.e10bf",
+                "289f8881.03ba98"
+            ]
+        ]
+    },
+    {
+        "id": "387cf089.992da",
+        "type": "serial in",
+        "z": "57db6e45.a019",
+        "name": "sensor",
+        "serial": "9848656c.788808",
+        "x": 180,
+        "y": 981,
+        "wires": [
+            [
+                "8b673fa5.241f7"
+            ]
+        ]
+    },
+    {
+        "id": "2278d072.e10bf",
+        "type": "debug",
+        "z": "57db6e45.a019",
+        "name": "sensor debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 410,
+        "y": 481,
+        "wires": []
+    },
+    {
+        "id": "289f8881.03ba98",
+        "type": "function",
+        "z": "57db6e45.a019",
+        "name": "Format To Alert2",
+        "func": "var res = {};\nvar sensorString;\n\nsensorString = msg.payload.trim(\" \");\n\n\nif(sensorString === \"Alerta2\")\n{\n    res.topic = \"sensor puerta abierta\";\n    res.payload = {};\n    res.payload = {\"alerta\": sensorString, \"place\": \"Casa 1\"}\n    return res;\n}\nelse\n{\n    res.payload = {};\n    res.payload = {\"no entra\": \"true\"}\n    return res;\n    \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 581,
+        "wires": [
+            [
+                "2b3458b3.7bfc18",
+                "d4386e97.408c9"
+            ]
+        ]
+    },
+    {
+        "id": "da0dced1.95bbe",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "26096c87.076114",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "172.24.42.29",
+        "port": "8083",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "89f0f270.11a75",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "9848656c.788808",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    }
+]
