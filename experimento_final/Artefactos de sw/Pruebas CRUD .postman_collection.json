@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "def06e6f-7d1b-45f0-a2be-4b1f9b6db19c",
+		"name": "Pruebas CRUD ",
+		"description": "El rest para los servicios de unidades residenciales, residencias y sensores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/floors",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : \"TorreAlpes_UR\",\n\t\"name\" : \"torreAlpes\",\n\t\"code\" : \"\",\n\t\"rooms\": [\"TorreAndes_Casa1\"] \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/floors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"floors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"TAR01\",\n\t\"name\":\"TorreAndes_Casa1\",\n\t\"code\": \"Casa1_TAR01\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms/TAR01/sensors",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"TAS01\",\n\t\"code\" : \"Sensor1_TAS01\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rooms/TAR01/sensors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms",
+						"TAR01",
+						"sensors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/sensors/TAS01/measurements",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"name\": \"alerta2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/sensors/TAS01/measurements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sensors",
+						"TAS01",
+						"measurements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms/TAR01/consolidateddata",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"alerta2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rooms/TAR01/consolidateddata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms",
+						"TAR01",
+						"consolidateddata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms/TAR01",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/rooms/TAR01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms",
+						"TAR01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/floors",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : \"TorreAlpes_UR\",\n\t\"name\" : \"torreAlpes\",\n\t\"code\" : \"\",\n\t\"rooms\": [\"TorreAndes_Casa2\"] \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/floors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"floors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"TAR02\",\n\t\"name\":\"TorreAndes_Casa2\",\n\t\"code\": \"Casa2_TAR02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/sensors",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"TAS02\",\n\t\"code\" : \"Sensor2_TAS02\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/sensors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sensors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/sensors/TAS02",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/sensors/TAS02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sensors",
+						"TAS02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rooms/TAR02",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/rooms/TAR02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms",
+						"TAR02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/floors/TorreAlpes_UR",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/floors/TorreAlpes_UR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"floors",
+						"TorreAlpes_UR"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
