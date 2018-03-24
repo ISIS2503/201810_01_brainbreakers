@@ -1,0 +1,3 @@
+com\m2mci\mqttKafkaBridge\CommandLineParser.class
+com\m2mci\mqttKafkaBridge\Bridge.class
+example\producer\SimplePartitioner.class
