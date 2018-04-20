@@ -4,6 +4,11 @@ void setup();
 void loop();
 void setColor(int redValue, int greenValue, int blueValue);
 int id =  1;
+  
+#define SIZE_BUFFER_DATA       50
+  boolean     stringComplete = false;
+  String      inputString = "";
+  char        bufferData [SIZE_BUFFER_DATA];
 
 //Variable del ledRGB
 
@@ -27,11 +32,27 @@ int id =  1;
   //Current time when the button is tapped
   long currTime;
   
+  //Buzzer pin
+  int speakerPin = 17;
+  
+  
+  //varibles de la bateria y anuncios de bateria baja
+  
+  //Minimum voltage required for an alert
+   const double MIN_VOLTAGE = 1;
+
+  //Battery indicator
+  const int BATTERY_LED = 15;
+
+  //Battery measure pin
+  const int BATTERY_PIN = A0;
+
+  //Current battery charge
+  double batteryCharge;
 
 
-
-//Variables teclado
-#include <Keypad.h>
+  //Variables teclado
+  #include <Keypad.h>
 
   //Specified password
   const String KEY = "1234";
@@ -131,6 +152,14 @@ void setup()
   
   pinMode(ledPin, OUTPUT);      // declare LED as output
   pinMode(inputPin, INPUT);     // declare sensor as input
+  
+  // bateria carga
+  
+  // Ouput pin definition for BATTERY_LED
+  pinMode(BATTERY_LED,OUTPUT);
+
+  //Input pin definition for battery measure
+  pinMode(BATTERY_PIN,INPUT);
 }
 
 void loop()
@@ -139,7 +168,10 @@ void loop()
 
   if (val == HIGH) {            // check if the input is HIGH
     digitalWrite(ledPin, HIGH);  // turn LED ON
-      Serial.println("Alerta1");
+      Serial.println("alerta4");
+      tone(speakerPin, 135);
+      delay(500);           
+      noTone(speakerPin);
   } else {
     digitalWrite(ledPin, LOW); // turn LED OFF
 
@@ -152,8 +184,7 @@ void loop()
     //Selected key parsed;
     customKey = customKeypad.getKey();
   }
-  else {
-   
+  else {  
     while(true);
   }
 
@@ -177,7 +208,10 @@ void loop()
     if(open && (millis()-currTime)>=15000)
      {
           setColor(0, 255, 255);
-          Serial.println("Alerta2");
+          Serial.println("alerta2");
+          tone(speakerPin, 135);
+          delay(200);           
+          noTone(speakerPin);
       
          
      }
@@ -188,17 +222,27 @@ void loop()
       open = true;
       currTime = millis();
       setColor(255, 0, 255);
+      tone(speakerPin, 400);
+      delay(1000);           
+      noTone(speakerPin);
       attempts = 0;
     }
     else {
       attempts++;
       currentKey = "";
-    }
+      if(attempts > 0)
+      {
+        tone(speakerPin, 135);
+        delay(1000);           
+        noTone(speakerPin);
+      }
+      
+    }   
   }
   if(attempts>=maxAttempts) {
     currentKey = "";
     attempts = 0;
-    Serial.println("Alerta3");
+    Serial.println("alerta3");
      setColor(0, 255, 255);
     delay(LOCK_TIME);
      setColor(255,255, 0);
@@ -219,7 +263,10 @@ void loop()
     if(digitalRead(CONTACT_PIN)) {
       if((millis()-currTime)>=10000) {
         setColor(0, 255, 255);
-        Serial.println("Alerta2");
+        tone(speakerPin, 135);
+        delay(1000);           
+        noTone(speakerPin);
+        Serial.println("alerta2");
       }
     }else{
       setColor(255, 255, 0);
@@ -229,10 +276,28 @@ void loop()
     }
   }
   
- 
+  // bateria baja 
+  
+  //Value conversion from digital to voltage
+  batteryCharge = (analogRead(BATTERY_PIN)*5.4)/1024;
+  
+  //Measured value comparison with min voltage required
+  if(batteryCharge<=MIN_VOLTAGE) {
+    digitalWrite(BATTERY_LED,HIGH);
+    Serial.println("alerta1");
+    tone(speakerPin, 135);
+    delay(400);           
+    noTone(speakerPin);
+  }
+  else {
+    digitalWrite(BATTERY_LED,LOW);
+  }
+  
   delay(100);
 
 }
+
+
 
 //Method that outputs the RGB specified color
 void setColor(int redValue, int greenValue, int blueValue) {
