@@ -86,8 +86,26 @@ public class WiringService {
     public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index) throws Exception{
         System.out.println("Resourse");
         publish("actualizarClave;"+clave+";"+index);
-        return Response.ok().entity("{\"llego\":\"Agregar contraseña\"}").status(Response.Status.ACCEPTED).build();
+        return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
+    
+    @POST
+    @Path("/borrar")
+    public Response deletePassword(@QueryParam("index") String index) throws Exception{
+        System.out.println("Resourse");
+        publish("actualizarClave;0;"+index);
+        return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
+    }
+    
+    @POST
+    @Path("/borrartodas")
+    public Response deleteAllPasswords() throws Exception{
+        System.out.println("Resourse");
+        publish("borrarTodo;0;0");
+        return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
+    }
+    
+    
     
     
 }
