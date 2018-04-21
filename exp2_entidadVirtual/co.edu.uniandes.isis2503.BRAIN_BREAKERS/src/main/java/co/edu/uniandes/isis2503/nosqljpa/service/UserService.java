@@ -21,16 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package co.edu.uniandes.isis2503.nosqljpa.service;
+
 import ch.qos.logback.classic.util.ContextInitializer;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidencialLogic;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UserDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,15 +43,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.fusesource.mqtt.client.BlockingConnection;
-import org.fusesource.mqtt.client.MQTT;
-import org.fusesource.mqtt.client.QoS;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
+ * /**
  *
  * @author e.reyesm
  */
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserService {
-    
+
+    @POST
+    @Path("/add")
+    public Response add(UserDTO dto) throws Exception {
+        HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
+                .header("content-type", "application/json")
+                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\"e.reyesm@uniandes.edu.co\",\"password\":\"Pass1234_123\",\"connection\":\"Username-Password-Authentication\"}")
+                .asString();
+        return Response.ok().entity("{\"Se agrego ususario\"}").status(Response.Status.ACCEPTED).build();
+    }
 }
