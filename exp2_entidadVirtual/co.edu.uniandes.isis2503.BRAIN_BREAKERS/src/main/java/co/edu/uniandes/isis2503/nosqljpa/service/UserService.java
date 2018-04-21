@@ -78,4 +78,15 @@ public class UserService {
                 .asString();
         return Response.ok().entity("{\"Se agrego ususario\"}").status(Response.Status.ACCEPTED).build();
     }
+    
+    @POST
+    @Path("/updatePassword")
+    public Response update(UserDTO dto) throws Exception {
+        usuarioLogic.add(dto);
+        HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/change_password")
+                .header("content-type", "application/json")
+                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\""+dto.getPassword()+"\",\"connection\":\"Username-Password-Authentication\"}")
+                .asString();
+        return Response.ok().entity("{\"Se agrego ususario\"}").status(Response.Status.ACCEPTED).build();
+    }
 }
