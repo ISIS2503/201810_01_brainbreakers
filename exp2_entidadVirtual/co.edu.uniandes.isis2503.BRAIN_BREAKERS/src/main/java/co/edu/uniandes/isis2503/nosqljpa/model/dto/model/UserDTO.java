@@ -35,12 +35,17 @@ public class UserDTO {
     private String correo;
     
 
-    private List<String> roles;
+    private String password;
     
-    public UserDTO (String pCorreo)
+    public UserDTO()
+    {
+        
+    }
+    
+    public UserDTO (String pCorreo, String pPassword)
     {
         correo = pCorreo;
-        roles =  new ArrayList<>();
+        password = pPassword;
     }
 
     public String getCorreo() {
@@ -51,17 +56,14 @@ public class UserDTO {
         this.correo = correo;
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
-      public void addRole(String rol)
-    {
-        roles.add(rol);
-    }
+
+   
     
 }

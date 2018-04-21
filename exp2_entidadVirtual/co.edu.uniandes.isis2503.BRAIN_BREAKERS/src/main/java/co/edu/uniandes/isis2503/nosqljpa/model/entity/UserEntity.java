@@ -41,13 +41,13 @@ public class UserEntity {
     @Id
     private String correo;
     
-    @ElementCollection
-    private List<String> roles;
+    private String contraseña;
     
-    public UserEntity (String pCorreo)
+    public UserEntity (String pCorreo, String pContraseña)
     {
         correo = pCorreo;
-        roles =  new ArrayList<>();
+        contraseña = pContraseña;
+       
     }
 
     public String getCorreo() {
@@ -58,18 +58,13 @@ public class UserEntity {
         this.correo = correo;
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
-    
-    public void addRole(String rol)
-    {
-        roles.add(rol);
-    }
-    
+
     
 }

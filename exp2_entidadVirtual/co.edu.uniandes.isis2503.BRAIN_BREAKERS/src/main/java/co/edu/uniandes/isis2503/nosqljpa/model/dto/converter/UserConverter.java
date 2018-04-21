@@ -40,15 +40,13 @@ public class UserConverter implements IUserCoverter{
 
     @Override
     public UserDTO entityToDto(UserEntity entity) {
-        UserDTO dto = new UserDTO(entity.getCorreo());
-        dto.setRoles(entity.getRoles());
+        UserDTO dto = new UserDTO(entity.getCorreo(),entity.getContraseña());
         return dto;
     }
 
     @Override
     public UserEntity dtoToEntity(UserDTO dto) {
-        UserEntity entity = new UserEntity(dto.getCorreo());
-        entity.setRoles(dto.getRoles());
+        UserEntity entity = new UserEntity(dto.getCorreo(),dto.getPassword());
         return entity;
     }
 

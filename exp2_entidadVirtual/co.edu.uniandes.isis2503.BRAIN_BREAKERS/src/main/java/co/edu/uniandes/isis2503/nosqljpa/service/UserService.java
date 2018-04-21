@@ -26,8 +26,9 @@ package co.edu.uniandes.isis2503.nosqljpa.service;
 import ch.qos.logback.classic.util.ContextInitializer;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidencialLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUserLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.UserLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.UserLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UserDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
 import java.util.List;
@@ -58,13 +59,22 @@ import org.json.JSONObject;
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserService {
+    
+    private final IUserLogic usuarioLogic;
+    
+    public UserService ()
+    {
+        usuarioLogic = new UserLogic();
+    }
+    
 
     @POST
     @Path("/add")
-    public Response add() throws Exception {
+    public Response add(UserDTO dto) throws Exception {
+        usuarioLogic.add(dto);
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
                 .header("content-type", "application/json")
-                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\"e.reyesm@uniandes.edu.co\",\"password\":\"Pass1234_123\",\"connection\":\"Username-Password-Authentication\"}")
+                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\""+dto.getPassword()+"\",\"connection\":\"Username-Password-Authentication\"}")
                 .asString();
         return Response.ok().entity("{\"Se agrego ususario\"}").status(Response.Status.ACCEPTED).build();
     }

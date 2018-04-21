@@ -5,6 +5,7 @@
     <class>co.edu.uniandes.isis2503.nosqljpa.model.entity.UnidadResidencialEntity</class>
     <class>co.edu.uniandes.isis2503.nosqljpa.model.entity.DivisionResidencialEntity</class>
     <class>co.edu.uniandes.isis2503.nosqljpa.model.entity.ResidenciaEntity</class>
+    <class>co.edu.uniandes.isis2503.nosqljpa.model.entity.UserEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.autocommit" value="true"/>
