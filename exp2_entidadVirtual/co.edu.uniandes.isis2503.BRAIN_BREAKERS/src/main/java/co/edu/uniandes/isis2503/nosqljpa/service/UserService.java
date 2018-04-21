@@ -61,7 +61,7 @@ public class UserService {
 
     @POST
     @Path("/add")
-    public Response add(UserDTO dto) throws Exception {
+    public Response add() throws Exception {
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
                 .header("content-type", "application/json")
                 .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\"e.reyesm@uniandes.edu.co\",\"password\":\"Pass1234_123\",\"connection\":\"Username-Password-Authentication\"}")

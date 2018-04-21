@@ -61,7 +61,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     public static final String AUTHENTICATION_SCHEME = "Bearer";
 
-    final JwkProvider provider = new UrlJwkProvider("https://arquisoft20172-farruza.auth0.com/.well-known/jwks.json");
+    final JwkProvider provider = new UrlJwkProvider("https://brainbreakers.auth0.com/.well-known/jwks.json");
     final String privateKeyId = "PK";
     RSAKeyProvider keyProvider = new RSAKeyProvider() {
         @Override
@@ -102,15 +102,15 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     void verifyToken(String token) {
         try {//Cambiar por variables de entorno
-            String issuer = "https://isis2503-ereyesm.auth0.com/";
+            String issuer = "https://brainbreakers.auth0.com/";
             String audience;
             //Access token
             if (!JWT.decode(token).getClaim("gty").isNull() && JWT.decode(token).getClaim("gty").asString().equals("client-credentials")) {
-                audience = "uniandes.edu.co/thermalcomfort";
+                audience = "https://brainbreakers.auth0.com/api/v2/";
             }
             //ID token
             else {
-                audience = "Hp-h_6NezYeipqO9oZGj-vkciGwFwo18";
+                audience = "vJihRX7vDJpg-Y821hGreFqMoa2TAxmp";
             }
             JWTVerifier verifier = JWT.require(algorithm)
                     .withIssuer(issuer)
