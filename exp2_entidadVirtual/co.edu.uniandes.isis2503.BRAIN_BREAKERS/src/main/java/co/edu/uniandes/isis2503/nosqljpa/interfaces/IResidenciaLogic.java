@@ -35,6 +35,8 @@ public interface IResidenciaLogic {
     public ResidenciaDTO addHorario(String unidad,String divison, String residencia,String horario)throws Exception;
     public ResidenciaDTO update(ResidenciaDTO dto);
     public ResidenciaDTO find(String id);
+    public ResidenciaDTO updateHorario(String pHorario, String nombreResidencia, String pHorarioAntiguo);
     public List<ResidenciaDTO> all();
     public Boolean delete(String id);
+    public ResidenciaDTO deleteHorario(String nombreResidencia, String pHorario);
 }

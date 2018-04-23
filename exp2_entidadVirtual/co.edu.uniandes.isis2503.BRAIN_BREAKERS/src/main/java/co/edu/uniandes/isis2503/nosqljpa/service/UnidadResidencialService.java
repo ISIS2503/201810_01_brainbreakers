@@ -60,21 +60,24 @@ public class UnidadResidencialService {
     }
 
     @POST
+    @Secured(Role.yale)
     public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.add(dto);
     }
-    @POST
+    @POST    
     @Path("/autho")
     public Response autho() {
         return Response.ok().entity("{\"Hola Mundo\"}").status(Response.Status.ACCEPTED).build();
     }
     @POST
+    @Secured(Role.admin)
     @Path("/{nombre}/addDivisionResidencial")
     public UnidadResidencialDTO addDivision(@PathParam("nombre") String nombre, @QueryParam("division") String division) throws Exception{
         return unidadResidencialLogic.addDivison(nombre, division);
     }
     
     @POST
+    @Secured(Role.admin)
     @Path("/{nombreU}/{nombreD}/addResidencia")
     public DivisionResidencialDTO addResidencia(@PathParam("nombreU") String nombreU,@PathParam("nombreD") String nombreD ,@QueryParam("residencia") String residencia) throws Exception{
         System.out.println("-----LLEGO++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -82,22 +85,26 @@ public class UnidadResidencialService {
     }
     
     @PUT
+    @Secured(Role.yale)
     public UnidadResidencialDTO update(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.update(dto);
     }
 
     @GET
+    @Secured(Role.yale)
     @Path("/{id}")
     public UnidadResidencialDTO find(@PathParam("id") String id) {
         return unidadResidencialLogic.find(id);
     }
 
     @GET
+    @Secured(Role.yale)
     public List<UnidadResidencialDTO> all() {
         return unidadResidencialLogic.all();
     }
 
     @DELETE
+    @Secured(Role.yale)
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {

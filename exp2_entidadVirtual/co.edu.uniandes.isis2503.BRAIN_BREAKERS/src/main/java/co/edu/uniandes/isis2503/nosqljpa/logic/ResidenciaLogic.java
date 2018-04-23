@@ -50,6 +50,30 @@ public class ResidenciaLogic implements IResidenciaLogic {
         logicDR = new DivisionResidencialLogic();
         persistenceUR = new UnidadResidencialPersistence();
     }
+    
+    @Override
+    public ResidenciaDTO updateHorario(String pHorario, String nombreResidencia, String pHorarioAntiguo) {
+        ResidenciaEntity result = persistence.find(nombreResidencia);
+        if(result != null)
+        {
+            result.updateHorario(pHorarioAntiguo, pHorario);
+            persistence.update(result);
+        }
+        ResidenciaDTO resultDto = CONVERTER.entityToDto(persistence.add(result));
+        return resultDto;
+    }
+    
+    @Override
+    public ResidenciaDTO deleteHorario(String nombreResidencia, String pHorario) {
+        ResidenciaEntity result = persistence.find(nombreResidencia);
+        if(result != null)
+        {
+            result.deleteHorario(pHorario);
+            persistence.update(result);
+        }
+        ResidenciaDTO resultDto = CONVERTER.entityToDto(persistence.add(result));
+        return resultDto;
+    }
 
     @Override
     public ResidenciaDTO add(ResidenciaDTO dto) {

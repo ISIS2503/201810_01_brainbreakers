@@ -116,5 +116,20 @@ public class ResidenciaEntity implements Serializable {
     public void setNumeroClaves(int numeroClaves) {
         this.numeroClaves = numeroClaves;
     }
+    
+    public void updateHorario(String viejo, String nuevo)
+    {
+        for (int i = 0; i <horarios.size(); i++) {
+            if(horarios.get(i).equals(viejo))
+            {
+                horarios.add(i, nuevo);
+            }
+        }
+    }
+    
+    public void deleteHorario(String horario)
+    {
+        horarios.remove(horario);
+    }
 
 }

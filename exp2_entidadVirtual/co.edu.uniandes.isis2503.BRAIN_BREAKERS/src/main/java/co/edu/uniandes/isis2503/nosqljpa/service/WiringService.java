@@ -74,6 +74,7 @@ public class WiringService {
     }
     
     @POST
+    @Secured(Role.user)
     @Path("/agregar")
     public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index) throws Exception{
         System.out.println("Resourse");
@@ -82,6 +83,7 @@ public class WiringService {
     }
     
     @POST
+    @Secured(Role.user)
     @Path("/cambiar")
     public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index) throws Exception{
         System.out.println("Resourse");
@@ -90,6 +92,7 @@ public class WiringService {
     }
     
     @POST
+    @Secured(Role.user)
     @Path("/borrar")
     public Response deletePassword(@QueryParam("index") String index) throws Exception{
         System.out.println("Resourse");
@@ -98,6 +101,7 @@ public class WiringService {
     }
     
     @POST
+    @Secured(Role.user)
     @Path("/borrartodas")
     public Response deleteAllPasswords() throws Exception{
         System.out.println("Resourse");

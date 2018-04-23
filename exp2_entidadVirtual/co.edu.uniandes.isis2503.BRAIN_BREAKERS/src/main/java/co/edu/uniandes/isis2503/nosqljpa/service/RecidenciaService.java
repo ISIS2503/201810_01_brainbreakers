@@ -59,33 +59,54 @@ public class RecidenciaService {
     }
 
     @POST
+    @Secured(Role.user)
     @Path("/{nombreU}/{nombreD}/{nombreR}/addAlarma")
     public ResidenciaDTO addAlerta(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("alerta") String alerta) throws Exception {
         return residenciaLogic.addAlerta(nombreU, nombreD, nombreR, alerta);
     }
     
     @POST
+    @Secured(Role.user)
     @Path("/{nombreU}/{nombreD}/{nombreR}/addHorario")
     public ResidenciaDTO addHorario(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("horario") String horario) throws Exception {
         return residenciaLogic.addHorario(nombreU, nombreD, nombreR, horario);
     }
+    
     @PUT
+    @Secured(Role.user)
+    @Path("/{nombreR}/cambiarHorario")
+    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario, @QueryParam("horarioN") String horarioN) throws Exception {
+        return residenciaLogic.updateHorario(horarioN, nombreR, horario);
+    }
+    
+    @DELETE
+    @Secured(Role.user)
+    @Path("/{nombreR}/borrarHorario")
+    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario) throws Exception {
+        return residenciaLogic.deleteHorario(nombreR, horario);
+    }
+    
+    @PUT
+    @Secured(Role.admin)
     public ResidenciaDTO update(ResidenciaDTO dto) {
         return residenciaLogic.update(dto);
     }
 
     @GET
+    @Secured(Role.admin)
     @Path("/{id}")
     public ResidenciaDTO find(@PathParam("id") String id) {
         return residenciaLogic.find(id);
     }
 
     @GET
+    @Secured(Role.admin)
     public List<ResidenciaDTO> all() {
         return residenciaLogic.all();
     }
 
     @DELETE
+    @Secured(Role.user)
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {

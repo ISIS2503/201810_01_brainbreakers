@@ -48,6 +48,13 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.Authenticator;
+import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
+import java.net.URL;
+import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -82,11 +89,53 @@ public class UserService {
     @POST
     @Path("/updatePassword")
     public Response update(UserDTO dto) throws Exception {
-        usuarioLogic.add(dto);
+        usuarioLogic.update(dto);
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/change_password")
                 .header("content-type", "application/json")
-                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\""+dto.getPassword()+"\",\"connection\":\"Username-Password-Authentication\"}")
+                .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\"\",\"connection\":\"Username-Password-Authentication\"}")
                 .asString();
-        return Response.ok().entity("{\"Se agrego ususario\"}").status(Response.Status.ACCEPTED).build();
+        return Response.ok().entity("{\"Se le envio un link al correo para cambiar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
+    
+    @DELETE
+    public Response borrar(@QueryParam("email") String email, @QueryParam("userId") String id, @QueryParam("auto") String auto) throws Exception {
+        usuarioLogic.delete(email);
+        HttpResponse<String> response = Unirest.delete("https://brainbreakers.auth0.com/api/v2/users/auth0|"+id)
+                .header("Authorization", "Bearer "+auto)
+                .asString();
+        return Response.ok().entity("{\"Se borro el usuario\"}").status(Response.Status.ACCEPTED).build();
+    }
+    
+    
+    @GET
+    public Response obtenerInfo(@QueryParam("auto") String auto) throws Exception {
+//      URL url = new URL("https://brainbreakers.auth0.com/userinfo");
+//        URLConnection con = url.openConnection();
+//        con.addRequestProperty("Authorization", "Bearer "+auto);
+//        
+//        Authenticator au = new Authenticator() {
+//         @Override
+//         protected PasswordAuthentication
+//            getPasswordAuthentication() {
+//            return new PasswordAuthentication
+//               ("usuario", "clave".toCharArray());
+//         }
+//      };
+//      Authenticator.setDefault(au);
+//      BufferedReader in = new BufferedReader(
+//         new InputStreamReader(con.getInputStream()));
+//
+//      String linea;
+//      while ((linea = in.readLine()) != null) {
+//         System.out.println(linea+"*******************************");
+//      }
+//     
+//        return Response.ok().entity("{\"Se borro el usuario\"}").status(Response.Status.ACCEPTED).build();
+        HttpResponse<String> response = Unirest.get("https://brainbreakers.auth0.com/userinfo")
+                .header("Authorization", "Bearer "+auto)
+                .asString();
+        return Response.ok().entity("{\"FALTA PARSEAR LA INFO\"}").status(Response.Status.ACCEPTED).build();
+    }
+
+
 }
