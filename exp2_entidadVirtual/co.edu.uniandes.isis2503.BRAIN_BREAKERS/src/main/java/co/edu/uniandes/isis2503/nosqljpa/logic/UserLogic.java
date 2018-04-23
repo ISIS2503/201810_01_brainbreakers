@@ -39,14 +39,21 @@ import java.util.UUID;
 public class UserLogic implements IUserLogic{
     
     private final UserPersistence persistence;
-   
+    private ResidenciaLogic logicR;
 
     public UserLogic() {
         this.persistence = new UserPersistence(); 
     }
 
     @Override
-    public UserDTO add(UserDTO dto) {
+    public UserDTO add(UserDTO dto, String residencia) throws Exception{
+        ResidenciaDTO buscado = logicR.find(residencia);
+        if(buscado == null)
+        {
+            throw new Exception("no existe esa recidencia");
+        }
+        buscado.agregarUsuario(dto.getCorreo());
+        logicR.update(buscado);
         UserDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;
     }
@@ -68,8 +75,16 @@ public class UserLogic implements IUserLogic{
     }
 
     @Override
-    public Boolean delete(String id) {
+    public Boolean delete(String id, String residencia) throws Exception {
+        ResidenciaDTO buscado = logicR.find(residencia);
+        if(buscado == null)
+        {
+            throw new Exception("no existe esa recidencia");
+        }
+        buscado.deleteUsuario(id);
+        logicR.update(buscado);
         return persistence.delete(id);
+        
     }
     
 }

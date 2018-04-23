@@ -29,6 +29,7 @@ import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
 import java.util.List;
 import java.util.logging.Level;
@@ -59,54 +60,71 @@ public class RecidenciaService {
     }
 
     @POST
-    @Secured(Role.user)
     @Path("/{nombreU}/{nombreD}/{nombreR}/addAlarma")
     public ResidenciaDTO addAlerta(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("alerta") String alerta) throws Exception {
         return residenciaLogic.addAlerta(nombreU, nombreD, nombreR, alerta);
     }
     
+    @GET
+    @Secured({Role.yale})
+    @Path("/allAlarmas")
+    public List<AlertaDTO> getAllAlarmas() throws Exception {
+        return residenciaLogic.getAllAlertas();
+    }
+    
     @POST
-    @Secured(Role.user)
+    @Secured({Role.yale,Role.admin,Role.seguridad})
+    @Path("/{nombreU}/consultarAlarmas")
+    public List<AlertaDTO> addAlerta(@PathParam("nombreU") String nombreU) throws Exception {
+        return residenciaLogic.getAllAlertasByUnidad(nombreU);
+    }
+    
+    @POST
+    @Secured({Role.user})
     @Path("/{nombreU}/{nombreD}/{nombreR}/addHorario")
-    public ResidenciaDTO addHorario(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("horario") String horario) throws Exception {
+    public ResidenciaDTO addHorario(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("horario") String horario, @QueryParam("usuario") String user) throws Exception {
+        String key =nombreR+"_"+nombreD+"_"+nombreU;
+        residenciaLogic.validarUsuario(user, key);
         return residenciaLogic.addHorario(nombreU, nombreD, nombreR, horario);
     }
     
     @PUT
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/{nombreR}/cambiarHorario")
-    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario, @QueryParam("horarioN") String horarioN) throws Exception {
+    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario, @QueryParam("horarioN") String horarioN, @QueryParam("usuario") String user) throws Exception {
+        residenciaLogic.validarUsuario(user, nombreR);
         return residenciaLogic.updateHorario(horarioN, nombreR, horario);
     }
     
     @DELETE
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/{nombreR}/borrarHorario")
-    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario) throws Exception {
+    public ResidenciaDTO cambiarHorario(@PathParam("nombreR") String nombreR, @QueryParam("horarioA") String horario, @QueryParam("usuario") String user) throws Exception {
+        residenciaLogic.validarUsuario(user, nombreR);
         return residenciaLogic.deleteHorario(nombreR, horario);
     }
     
     @PUT
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     public ResidenciaDTO update(ResidenciaDTO dto) {
         return residenciaLogic.update(dto);
     }
 
     @GET
-    @Secured(Role.admin)
+    @Secured({Role.user})
     @Path("/{id}")
     public ResidenciaDTO find(@PathParam("id") String id) {
         return residenciaLogic.find(id);
     }
 
     @GET
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     public List<ResidenciaDTO> all() {
         return residenciaLogic.all();
     }
 
     @DELETE
-    @Secured(Role.user)
+    @Secured({Role.admin})
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {

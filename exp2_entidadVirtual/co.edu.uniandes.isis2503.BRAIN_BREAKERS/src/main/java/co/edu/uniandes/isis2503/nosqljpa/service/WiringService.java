@@ -26,7 +26,8 @@ package co.edu.uniandes.isis2503.nosqljpa.service;
 import ch.qos.logback.classic.util.ContextInitializer;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidencialLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
@@ -55,6 +56,14 @@ import org.fusesource.mqtt.client.QoS;
 @Path("/controlador")
 @Produces(MediaType.APPLICATION_JSON)
 public class WiringService {
+    
+    private final IResidenciaLogic residenciaLogic;
+    
+    public WiringService ()
+    {
+        residenciaLogic = new ResidenciaLogic();
+    }
+    
 
     public void publish(String mensaje) throws Exception {
         System.out.println("Llego 1");
@@ -74,34 +83,37 @@ public class WiringService {
     }
     
     @POST
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/agregar")
-    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index) throws Exception{
+    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
+        residenciaLogic.validarUsuario(user, residencia);
         publish("agregarClave;"+clave+";"+index);
         return Response.ok().entity("{\"llego\":\"Agregar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     
     @POST
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/cambiar")
-    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index) throws Exception{
+    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index,  @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
+        residenciaLogic.validarUsuario(user, residencia);
         publish("actualizarClave;"+clave+";"+index);
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     
     @POST
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/borrar")
-    public Response deletePassword(@QueryParam("index") String index) throws Exception{
+    public Response deletePassword(@QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
+        residenciaLogic.validarUsuario(user, residencia);
         publish("actualizarClave;0;"+index);
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     
     @POST
-    @Secured(Role.user)
+    @Secured({Role.user})
     @Path("/borrartodas")
     public Response deleteAllPasswords() throws Exception{
         System.out.println("Resourse");

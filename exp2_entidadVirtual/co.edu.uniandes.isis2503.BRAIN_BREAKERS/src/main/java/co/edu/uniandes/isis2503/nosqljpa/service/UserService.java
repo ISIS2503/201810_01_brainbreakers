@@ -77,8 +77,8 @@ public class UserService {
 
     @POST
     @Path("/add")
-    public Response add(UserDTO dto) throws Exception {
-        usuarioLogic.add(dto);
+    public Response add(UserDTO dto, @QueryParam("residencia") String residencia) throws Exception {
+        usuarioLogic.add(dto,residencia);
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
                 .header("content-type", "application/json")
                 .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\""+dto.getPassword()+"\",\"connection\":\"Username-Password-Authentication\"}")
@@ -98,8 +98,8 @@ public class UserService {
     }
     
     @DELETE
-    public Response borrar(@QueryParam("email") String email, @QueryParam("userId") String id, @QueryParam("auto") String auto) throws Exception {
-        usuarioLogic.delete(email);
+    public Response borrar(@QueryParam("residencia") String residencia,@QueryParam("email") String email, @QueryParam("userId") String id, @QueryParam("auto") String auto) throws Exception {
+        usuarioLogic.delete(email, residencia);
         HttpResponse<String> response = Unirest.delete("https://brainbreakers.auth0.com/api/v2/users/auth0|"+id)
                 .header("Authorization", "Bearer "+auto)
                 .asString();

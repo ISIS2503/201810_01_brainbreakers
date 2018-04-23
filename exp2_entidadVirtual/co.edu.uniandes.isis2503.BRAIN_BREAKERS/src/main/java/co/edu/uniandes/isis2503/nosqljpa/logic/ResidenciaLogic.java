@@ -28,10 +28,12 @@ import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.ResidenciaCo
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.entity.ResidenciaEntity;
 import co.edu.uniandes.isis2503.nosqljpa.model.entity.UnidadResidencialEntity;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.ResidenciaPersistence;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.UnidadResidencialPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,12 +52,11 @@ public class ResidenciaLogic implements IResidenciaLogic {
         logicDR = new DivisionResidencialLogic();
         persistenceUR = new UnidadResidencialPersistence();
     }
-    
+
     @Override
     public ResidenciaDTO updateHorario(String pHorario, String nombreResidencia, String pHorarioAntiguo) {
         ResidenciaEntity result = persistence.find(nombreResidencia);
-        if(result != null)
-        {
+        if (result != null) {
             result.updateHorario(pHorarioAntiguo, pHorario);
             persistence.update(result);
         }
@@ -64,10 +65,47 @@ public class ResidenciaLogic implements IResidenciaLogic {
     }
     
     @Override
+    public void validarUsuario(String user, String nombreResidencia) throws Exception {
+        ResidenciaEntity result = persistence.find(nombreResidencia);
+        if (result == null) {
+            throw new Exception("no existe esa residencia");
+        }
+        if(result.buscarUsuario(user)== null)
+        {
+            throw new Exception("no es un usuario de la residencia");
+        }
+        ResidenciaDTO resultDto = CONVERTER.entityToDto(persistence.add(result));
+    }
+
+    @Override
+    public List<AlertaDTO> getAllAlertas() {
+        List<ResidenciaDTO> result = all();
+        List<AlertaDTO> retorno = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            List<String> alertas = result.get(i).getAlertas();
+            for (int j = 0; j < alertas.size(); j++) {
+                retorno.add(new AlertaDTO(alertas.get(j)));
+            }
+        }
+        return retorno;
+    }
+
+    @Override
+    public List<AlertaDTO> getAllAlertasByUnidad(String nombreUnidad) {
+        ResidenciaDTO result = find(nombreUnidad);
+        List<AlertaDTO> retorno = new ArrayList<>();
+        List<String> alertas = result.getAlertas();
+        for (int j = 0; j < alertas.size(); j++) {
+            retorno.add(new AlertaDTO(alertas.get(j)));
+        }
+
+        return retorno;
+    }
+
+    @Override
     public ResidenciaDTO deleteHorario(String nombreResidencia, String pHorario) {
         ResidenciaEntity result = persistence.find(nombreResidencia);
-        if(result != null)
-        {
+        if (result != null) {
             result.deleteHorario(pHorario);
             persistence.update(result);
         }

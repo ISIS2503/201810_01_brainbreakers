@@ -54,7 +54,8 @@ public class AuthorizationFilter implements ContainerRequestFilter {
     public enum Role {
         admin,
         user,
-        yale
+        yale,
+        seguridad
     }
 
     @Context

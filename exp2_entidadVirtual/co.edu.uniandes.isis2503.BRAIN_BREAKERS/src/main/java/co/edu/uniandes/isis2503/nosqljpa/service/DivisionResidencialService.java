@@ -59,26 +59,26 @@ public class DivisionResidencialService {
 
     
     @PUT
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     public DivisionResidencialDTO update(DivisionResidencialDTO dto) {
         return divisionResidencialLogic.update(dto);
     }
 
     @GET
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     @Path("/{id}")
     public DivisionResidencialDTO find(@PathParam("id") String id) {
         return divisionResidencialLogic.find(id);
     }
 
     @GET
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     public List<DivisionResidencialDTO> all() {
         return divisionResidencialLogic.all();
     }
 
     @DELETE
-    @Secured(Role.admin)
+    @Secured({Role.admin})
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {

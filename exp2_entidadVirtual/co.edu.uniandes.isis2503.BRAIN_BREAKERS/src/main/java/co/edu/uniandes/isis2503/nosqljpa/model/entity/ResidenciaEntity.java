@@ -127,9 +127,26 @@ public class ResidenciaEntity implements Serializable {
         }
     }
     
+    public String buscarUsuario(String viejo)
+    {
+         for (int i = 0; i <ususarios.size(); i++) {
+            if(ususarios.get(i).equals(viejo))
+            {
+                return ususarios.get(i);
+            }
+        }
+         
+         return null;
+    }
+    
     public void deleteHorario(String horario)
     {
         horarios.remove(horario);
+    }
+    
+    public void deleteUsuario(String usuario)
+    {
+        ususarios.remove(usuario);
     }
 
 }

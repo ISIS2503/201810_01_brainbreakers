@@ -21,17 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.interfaces;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UserDTO;
+package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
  * @author e.reyesm
  */
-public interface IUserLogic {
-    public UserDTO add(UserDTO dto, String residencia) throws Exception;
-    public UserDTO update(UserDTO dto);
-    public UserDTO find(String id);
-    public List<UserDTO> all();
-    public Boolean delete(String id, String residencia) throws Exception;
+public class AlertaDTO {
+    
+    private String info;
+    
+    public AlertaDTO (String pInfo)
+    {
+        info = pInfo;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+    
+    
 }

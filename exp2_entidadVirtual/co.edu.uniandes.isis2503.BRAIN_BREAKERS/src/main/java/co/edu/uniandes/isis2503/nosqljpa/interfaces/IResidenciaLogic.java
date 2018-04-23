@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 package co.edu.uniandes.isis2503.nosqljpa.interfaces;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
 import java.util.List;
 
@@ -38,5 +39,8 @@ public interface IResidenciaLogic {
     public ResidenciaDTO updateHorario(String pHorario, String nombreResidencia, String pHorarioAntiguo);
     public List<ResidenciaDTO> all();
     public Boolean delete(String id);
+    public List<AlertaDTO> getAllAlertas();
+    public List<AlertaDTO> getAllAlertasByUnidad(String nombreUnidad);
+    public void validarUsuario(String user, String nombreResidencia) throws Exception;
     public ResidenciaDTO deleteHorario(String nombreResidencia, String pHorario);
 }

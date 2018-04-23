@@ -16,7 +16,6 @@ co\edu\uniandes\isis2503\nosqljpa\service\UnidadResidencialService.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IDivisionResidencialConverter.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\model\UnidadResidencialDTO.class
 co\edu\uniandes\isis2503\nosqljpa\persistence\ResidenciaPersistence.class
-co\edu\uniandes\isis2503\nosqljpa\service\UserService$1.class
 co\edu\uniandes\isis2503\nosqljpa\auth\CORSFilter.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\ResidenciaConverter.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IUserCoverter.class
@@ -31,6 +30,7 @@ co\edu\uniandes\isis2503\nosqljpa\main\Main.class
 co\edu\uniandes\isis2503\nosqljpa\service\WiringService.class
 co\edu\uniandes\isis2503\nosqljpa\logic\UnidadResidencialLogic.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialLogic.class
+co\edu\uniandes\isis2503\nosqljpa\model\dto\model\AlertaDTO.class
 co\edu\uniandes\isis2503\nosqljpa\auth\AuthorizationFilter$Role.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IUserLogic.class
 co\edu\uniandes\isis2503\nosqljpa\persistence\UnidadResidencialPersistence.class

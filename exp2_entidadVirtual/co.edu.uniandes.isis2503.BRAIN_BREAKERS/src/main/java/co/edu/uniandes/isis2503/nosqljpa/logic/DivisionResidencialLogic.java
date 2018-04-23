@@ -50,9 +50,9 @@ public class DivisionResidencialLogic implements IDivisionResidencialLogic {
     }
 
     @Override
-    public DivisionResidencialDTO addResidencia(String divison, String recidencia) {
+    public DivisionResidencialDTO addResidencia(String divison, String residencia) {
         DivisionResidencialDTO buscada = find(divison);
-        buscada.agregarResidencia(recidencia);
+        buscada.agregarResidencia(residencia);
         update(buscada);
         return buscada;
     }

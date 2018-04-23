@@ -33,7 +33,7 @@ import java.util.List;
 public interface IDivisionResidencialLogic {
 
     public DivisionResidencialDTO add(DivisionResidencialDTO dto);
-    public DivisionResidencialDTO addResidencia(String divison, String recidencia);
+    public DivisionResidencialDTO addResidencia(String divison, String resdencia);
     public DivisionResidencialDTO update(DivisionResidencialDTO dto);
     public DivisionResidencialDTO find(String id);
     public List<DivisionResidencialDTO> all();

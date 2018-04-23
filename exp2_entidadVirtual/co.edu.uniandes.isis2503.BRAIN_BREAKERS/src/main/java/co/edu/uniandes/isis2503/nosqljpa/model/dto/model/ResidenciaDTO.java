@@ -108,5 +108,10 @@ public class ResidenciaDTO {
     public void setNumeroClaves(int numeroClaves) {
         this.numeroClaves = numeroClaves;
     }
+    
+    public void deleteUsuario(String usuario)
+    {
+        ususarios.remove(usuario);
+    }
 
 }
