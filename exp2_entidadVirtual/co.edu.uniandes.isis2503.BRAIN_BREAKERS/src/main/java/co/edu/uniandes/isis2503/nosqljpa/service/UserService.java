@@ -77,8 +77,10 @@ public class UserService {
 
     @POST
     @Path("/add")
-    public Response add(UserDTO dto, @QueryParam("residencia") String residencia) throws Exception {
+    public Response add(UserDTO dto, @QueryParam("residencia") String residencia, @QueryParam("tipo") String tipo) throws Exception {
+        if(tipo.equals("1")){
         usuarioLogic.add(dto,residencia);
+        }
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
                 .header("content-type", "application/json")
                 .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\""+dto.getPassword()+"\",\"connection\":\"Username-Password-Authentication\"}")
@@ -88,8 +90,10 @@ public class UserService {
     
     @POST
     @Path("/updatePassword")
-    public Response update(UserDTO dto) throws Exception {
+    public Response update(UserDTO dto, @QueryParam("tipo") String tipo) throws Exception {
+        if(tipo.equals("1")){
         usuarioLogic.update(dto);
+        }
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/change_password")
                 .header("content-type", "application/json")
                 .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\""+dto.getCorreo()+"\",\"password\":\"\",\"connection\":\"Username-Password-Authentication\"}")
@@ -98,8 +102,10 @@ public class UserService {
     }
     
     @DELETE
-    public Response borrar(@QueryParam("residencia") String residencia,@QueryParam("email") String email, @QueryParam("userId") String id, @QueryParam("auto") String auto) throws Exception {
+    public Response borrar(@QueryParam("residencia") String residencia,@QueryParam("email") String email, @QueryParam("userId") String id, @QueryParam("auto") String auto,@QueryParam("tipo") String tipo) throws Exception {
+        if(tipo.equals("1")){
         usuarioLogic.delete(email, residencia);
+        }
         HttpResponse<String> response = Unirest.delete("https://brainbreakers.auth0.com/api/v2/users/auth0|"+id)
                 .header("Authorization", "Bearer "+auto)
                 .asString();
@@ -134,7 +140,7 @@ public class UserService {
         HttpResponse<String> response = Unirest.get("https://brainbreakers.auth0.com/userinfo")
                 .header("Authorization", "Bearer "+auto)
                 .asString();
-        return Response.ok().entity("{\"FALTA PARSEAR LA INFO\"}").status(Response.Status.ACCEPTED).build();
+        return Response.ok().entity("{\""+response.getBody()+"\"}").status(Response.Status.ACCEPTED).build();
     }
 
 

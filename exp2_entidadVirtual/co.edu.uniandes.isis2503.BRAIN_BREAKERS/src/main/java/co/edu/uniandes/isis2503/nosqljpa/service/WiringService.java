@@ -75,12 +75,15 @@ public class WiringService {
         connection.connect();
         System.out.println("Llego 2");
         // publicar al topico el mensaje ON u OFF en fncion a la intensidad de la lectura
-        connection.publish("torre1.1-201", mensaje.getBytes(), QoS.AT_LEAST_ONCE, false);
+        connection.publish("baja.torre1.1-201", mensaje.getBytes(), QoS.AT_LEAST_ONCE, false);
         
         System.out.println("Llego 3");
         connection.disconnect();
         System.out.println("Llego 4");
     }
+    
+    
+   
     
     @POST
     @Secured({Role.user})
@@ -92,10 +95,12 @@ public class WiringService {
         return Response.ok().entity("{\"llego\":\"Agregar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     
+   
+   
     @POST
     @Secured({Role.user})
     @Path("/cambiar")
-    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index,  @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
+    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index ,  @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
         residenciaLogic.validarUsuario(user, residencia);
         publish("actualizarClave;"+clave+";"+index);
@@ -108,7 +113,7 @@ public class WiringService {
     public Response deletePassword(@QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
         residenciaLogic.validarUsuario(user, residencia);
-        publish("actualizarClave;0;"+index);
+        publish("borrarClave;0;"+index);
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     
@@ -117,7 +122,7 @@ public class WiringService {
     @Path("/borrartodas")
     public Response deleteAllPasswords() throws Exception{
         System.out.println("Resourse");
-        publish("borrarTodo;0;0");
+        publish("borrarTodo;0;0"+" \n");
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
     

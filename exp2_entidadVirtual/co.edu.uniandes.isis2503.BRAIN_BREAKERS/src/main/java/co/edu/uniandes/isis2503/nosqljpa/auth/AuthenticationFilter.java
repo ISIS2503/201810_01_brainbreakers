@@ -101,6 +101,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     Algorithm algorithm = Algorithm.RSA256(keyProvider);
 
     void verifyToken(String token) {
+        System.out.println("Verificando tokens");
         try {//Cambiar por variables de entorno
             String issuer = "https://brainbreakers.auth0.com/";
             String audience;
