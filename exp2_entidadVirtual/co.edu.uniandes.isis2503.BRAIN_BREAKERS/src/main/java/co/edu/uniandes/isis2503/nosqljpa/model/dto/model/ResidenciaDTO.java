@@ -54,6 +54,7 @@ public class ResidenciaDTO {
         nombre =pNombre;
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
+        ususarios = new ArrayList<>();
         numeroClaves = 0;
     }
         public List<String> getUsusarios() {
@@ -65,7 +66,7 @@ public class ResidenciaDTO {
     }
     public void agregarUsuario(String pUsuario)
     {
-        alertas.add(pUsuario);
+        ususarios.add(pUsuario);
     }
      public String getNombre() {
         return nombre;

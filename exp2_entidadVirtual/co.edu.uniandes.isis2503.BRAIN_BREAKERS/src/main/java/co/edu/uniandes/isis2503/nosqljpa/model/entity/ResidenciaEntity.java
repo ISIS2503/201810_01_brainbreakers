@@ -73,7 +73,7 @@ public class ResidenciaEntity implements Serializable {
     }
     public void agregarUsuario(String pUsuario)
     {
-        alertas.add(pUsuario);
+        ususarios.add(pUsuario);
     }
     public String getNombre() {
         return nombre;

@@ -42,7 +42,8 @@ public class UserLogic implements IUserLogic{
     private ResidenciaLogic logicR;
 
     public UserLogic() {
-        this.persistence = new UserPersistence(); 
+        this.persistence = new UserPersistence();
+        logicR = new ResidenciaLogic();
     }
 
     @Override

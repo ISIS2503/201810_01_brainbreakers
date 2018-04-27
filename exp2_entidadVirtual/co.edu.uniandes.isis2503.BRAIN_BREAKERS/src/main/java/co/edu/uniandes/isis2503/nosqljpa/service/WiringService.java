@@ -84,11 +84,11 @@ public class WiringService {
     
     
    
-    
+ 
     @POST
     @Secured({Role.user})
     @Path("/agregar")
-    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
+    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index,@QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
         residenciaLogic.validarUsuario(user, residencia);
         publish("agregarClave;"+clave+";"+index);
