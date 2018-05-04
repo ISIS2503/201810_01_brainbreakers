@@ -6,7 +6,7 @@
   //ID del wiring
     int id =  1;
     
-  #define SIZE_BUFFER_DATA       50
+  #define SIZE_BUFFER_DATA       100
     boolean     stringComplete = false;
     String      inputString = "";
     char        bufferData [SIZE_BUFFER_DATA];
@@ -40,7 +40,7 @@
     //varibles de la bateria y anuncios de bateria baja
     
     //Minimum voltage required for an alert
-     const double MIN_VOLTAGE = 1;
+     const double MIN_VOLTAGE = 0;
   
     //Battery indicator
     const int BATTERY_LED = 15;
@@ -294,24 +294,27 @@
       digitalWrite(BATTERY_LED,LOW);
     }
     
-    delay(100);
   
     receiveData();
     processData();
+    
+    delay(100);
   }
   
-  void receiveData() {
-    while (Serial.available()) {
-      // get the new byte:
-      char inChar = (char)Serial.read();
-      // add it to the inputString:
-      inputString += inChar;
-      if (inChar == '\n') {
-        inputString.toCharArray(bufferData, SIZE_BUFFER_DATA);
-        stringComplete = true;
-      }
+void receiveData() {
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag
+    // so the main loop can do something about it:
+    if (inChar == '\n') {
+      inputString.toCharArray(bufferData, SIZE_BUFFER_DATA);
+      stringComplete = true;
     }
   }
+}
    
   void processData() {
     if (stringComplete) {
@@ -319,11 +322,12 @@
       String arreglo [3];
       int index, val;
       
+      processCommand(arreglo, inputString);
       val = arreglo[1].toInt();
       index = arreglo[2].toInt();
       
       
-      processCommand(arreglo, inputString);
+      
       
       if (arreglo[0] == "agregarClave")
       {
@@ -374,19 +378,22 @@
     return false;
   }
   
-  // Methods that divides the command by parameters
-  void processCommand(String* result, String command) {
-    char buf[sizeof(command)];
-    String vars = "";
-    vars.toCharArray(buf, sizeof(buf));
-    char *p = buf;
-    char *str;
-    int i = 0;
-    while ((str = strtok_r(p, ";", &p)) != NULL) {
-      // delimiter is the semicolon
-      result[i++] = str;
-    }
-  }
+  
+// Methods that divides the command by parameters
+void processCommand(String* result, String command) {
+  int i = 0;
+  char* token;
+  char buf[command.length() + 1];
+  
+  command.toCharArray(buf, sizeof(buf));
+  token = strtok(buf, ";");
+  
+  while(token != NULL) {
+    result[i++] = token;
+    token = strtok(NULL, ";");
+  }  
+}
+
   
   //Method that adds a password in the specified index
   void addPassword(int val, int index) {
