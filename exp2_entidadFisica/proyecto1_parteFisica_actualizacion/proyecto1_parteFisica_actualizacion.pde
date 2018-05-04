@@ -6,6 +6,9 @@
   //ID del wiring
     int id =  1;
     
+    lleva el tiempo del healthCheck
+    int healthTime = 0;
+    
   #define SIZE_BUFFER_DATA       100
     boolean     stringComplete = false;
     String      inputString = "";
@@ -165,6 +168,19 @@
   
   void loop()
   {
+    
+    //parte de health check
+    
+    healthTime ++;
+    
+    if (healthTime > 200)
+    {
+     Serial.println("estoy_bien");
+     healthTime = 0;
+    }
+    
+    
+    
      val = digitalRead(inputPin);  // read input value
   
     if (val == HIGH) {            // check if the input is HIGH
@@ -293,6 +309,8 @@
     else {
       digitalWrite(BATTERY_LED,LOW);
     }
+    
+    
     
   
     receiveData();
