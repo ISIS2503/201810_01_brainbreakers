@@ -75,7 +75,7 @@ public class WiringService {
         connection.connect();
         System.out.println("Llego 2");
         // publicar al topico el mensaje ON u OFF en fncion a la intensidad de la lectura
-        connection.publish("baja.torre1.1-201", mensaje.getBytes(), QoS.AT_LEAST_ONCE, false);
+        connection.publish("torre1.1-201", mensaje.getBytes(), QoS.AT_LEAST_ONCE, false);
         
         System.out.println("Llego 3");
         connection.disconnect();
@@ -87,10 +87,11 @@ public class WiringService {
  
     @POST
     @Secured({Role.user})
+    //
     @Path("/agregar")
     public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index,@QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
         System.out.println("Resourse");
-        residenciaLogic.validarUsuario(user, residencia);
+        //residenciaLogic.validarUsuario(user, residencia);
         publish("agregarClave;"+clave+";"+index);
         return Response.ok().entity("{\"llego\":\"Agregar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
