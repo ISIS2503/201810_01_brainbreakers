@@ -23,16 +23,16 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
-import ch.qos.logback.classic.util.ContextInitializer;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidencialLogic;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -53,7 +53,6 @@ import javax.ws.rs.core.Response;
 public class UnidadResidencialService {
 
     private final IUnidadResidencialLogic unidadResidencialLogic;
-   
 
     public UnidadResidencialService() {
         this.unidadResidencialLogic = new UnidadResidencialLogic();
@@ -103,6 +102,25 @@ public class UnidadResidencialService {
     public List<UnidadResidencialDTO> all() {
         return unidadResidencialLogic.all();
     }
+    
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorUnidadResidencialYMes")
+    public List<String> getAlarmasPorUnidadResidencialYmes(@QueryParam("nombreUnidadResidencial")String ur, @QueryParam("mes")String mes)
+    {
+        ArrayList<String> alertasBarrio = new ArrayList<>();
+        List<UnidadResidencialDTO> unidades = unidadResidencialLogic.all();
+        for (int i = 0; i < unidades.size(); i++) {
+            UnidadResidencialDTO actual =unidades.get(i);
+            if(actual.getNombre().equals(ur)){
+            String divisionActual = actual.getDivisionesResidenciales().get(i);
+          }
+        }
+        //if(alertasBarrio.size()==0){}
+        return alertasBarrio;
+    }
+    
+
 
     @DELETE
     @Secured({Role.yale})
