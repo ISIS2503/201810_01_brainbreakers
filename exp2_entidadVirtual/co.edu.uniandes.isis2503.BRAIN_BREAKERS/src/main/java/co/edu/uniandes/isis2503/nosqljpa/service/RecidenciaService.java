@@ -55,6 +55,10 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class RecidenciaService {
 
+    static List<String> getAlarmasPorResidenciaYmes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private final IResidenciaLogic residenciaLogic;
 
     public RecidenciaService() {
@@ -72,7 +76,7 @@ public class RecidenciaService {
     }
     
     @GET
-    @Secured({Role.yale})
+    //@Secured({Role.yale})
     @Path("/allAlarmas")
     public List<AlertaDTO> getAllAlarmas() throws Exception {
         return residenciaLogic.getAllAlertas();
@@ -132,8 +136,8 @@ public class RecidenciaService {
     
     @GET
     //@Secured({Role.admin})
-    @Path("/getAlarmasPorBarrio")
-    public List<String> getAlarmasPorBarrio(@QueryParam("barrio")String barrio, @QueryParam("mes")String mes)
+    @Path("/getAlarmasPorBarrioYMes")
+    public List<String> getAlarmasPorBarrioYMes(@QueryParam("barrio")String barrio, @QueryParam("mes")String mes)
     {
         ArrayList<String> alertasBarrio = new ArrayList<>();
         List<ResidenciaDTO> residencias = residenciaLogic.all();
@@ -156,6 +160,35 @@ public class RecidenciaService {
                 }
             }            
         }      
+        return alertasBarrio;
+    }
+    
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorResidenciaYMes")
+    public List<String> getAlarmasPorResidenciaYmes(@QueryParam("nombreResidencia")String residencia, @QueryParam("mes")String mes)
+    {
+        ArrayList<String> alertasBarrio = new ArrayList<>();
+        List<ResidenciaDTO> residencias = residenciaLogic.all();
+        for (int i = 0; i < residencias.size(); i++) {
+            ResidenciaDTO actual =residencias.get(i);
+            if(actual.getNombre().equals(residencia)){
+            int alerts = actual.getAlertas().size();
+            if(alerts>0){
+                    for (int j = 0; j <alerts ; j++) {
+                        String alertaAct = actual.getAlertas().get(j);
+                       System.out.println(alertaAct);
+                       String[] campos = alertaAct.split(";");
+                       System.out.println(campos[1]);
+                       if(campos[1].equals(mes)){
+                       System.out.println("SI ES EL MES");
+                       alertasBarrio.add(alertaAct);
+                       }
+                    }
+                }
+            }            
+        }
+        //if(alertasBarrio.size()==0){}
         return alertasBarrio;
     }
 

@@ -90,6 +90,7 @@ public class ResidenciaLogic implements IResidenciaLogic {
         return retorno;
     }
 
+    //ESTE METODO HACE LO MISMO QUE EL ANTERIOR, NO LO BORRO PORQUE NO SE SI ESTEBAN LO USÓ
     @Override
     public List<AlertaDTO> getAllAlertasByUnidad(String nombreUnidad) {
         ResidenciaDTO result = find(nombreUnidad);
