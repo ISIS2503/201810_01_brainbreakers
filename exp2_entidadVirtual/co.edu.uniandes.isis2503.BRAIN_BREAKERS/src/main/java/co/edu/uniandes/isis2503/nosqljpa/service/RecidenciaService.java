@@ -31,6 +31,8 @@ import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +64,11 @@ public class RecidenciaService {
     @POST
     @Path("/{nombreU}/{nombreD}/{nombreR}/addAlarma")
     public ResidenciaDTO addAlerta(@PathParam("nombreU") String nombreU, @PathParam("nombreD") String nombreD, @PathParam("nombreR") String nombreR, @QueryParam("alerta") String alerta) throws Exception {
-        return residenciaLogic.addAlerta(nombreU, nombreD, nombreR, alerta);
+        Calendar cal=Calendar.getInstance();
+        //String fecha = cal.get(cal.DATE)+"/"+cal.get(cal.MONTH)+"/"+cal.get(cal.YEAR);
+        String mes = (1+cal.get(cal.MONTH))+"";
+        String hora = cal.get(cal.HOUR_OF_DAY)+":"+cal.get(cal.MINUTE)+":"+cal.get(cal.SECOND);
+        return residenciaLogic.addAlerta(nombreU, nombreD, nombreR, alerta+";"+mes+";"+hora);
     }
     
     @GET
@@ -76,6 +82,7 @@ public class RecidenciaService {
     @Secured({Role.yale,Role.admin,Role.seguridad})
     @Path("/{nombreU}/consultarAlarmas")
     public List<AlertaDTO> addAlerta(@PathParam("nombreU") String nombreU) throws Exception {
+        
         return residenciaLogic.getAllAlertasByUnidad(nombreU);
     }
     
@@ -118,9 +125,38 @@ public class RecidenciaService {
     }
 
     @GET
-    @Secured({Role.admin})
+    //@Secured({Role.admin})
     public List<ResidenciaDTO> all() {
         return residenciaLogic.all();
+    }
+    
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorBarrio")
+    public List<String> getAlarmasPorBarrio(@QueryParam("barrio")String barrio, @QueryParam("mes")String mes)
+    {
+        ArrayList<String> alertasBarrio = new ArrayList<>();
+        List<ResidenciaDTO> residencias = residenciaLogic.all();
+        for (int i = 0; i < residencias.size(); i++) {
+            ResidenciaDTO actual =residencias.get(i);
+            int alerts = actual.getAlertas().size();
+            if(alerts>0){
+                if(actual.getBarrio().equals(barrio))
+                {
+                    for (int j = 0; j <alerts ; j++) {
+                        String alertaAct = actual.getAlertas().get(j);
+                       System.out.println(alertaAct);
+                       String[] campos = alertaAct.split(";");
+                       System.out.println(campos[1]);
+                       if(campos[1].equals(mes)){
+                           System.out.println("SI ES EL MES");
+                       alertasBarrio.add(alertaAct);
+                       }
+                    }
+                }
+            }            
+        }      
+        return alertasBarrio;
     }
 
     @DELETE

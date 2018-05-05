@@ -70,20 +70,25 @@ public class UnidadResidencialLogic implements IUnidadResidencialLogic {
     }
 
     @Override
-    public DivisionResidencialDTO addResidencia(String nombreUnidad, String divison, String residencia) throws Exception {
+    public DivisionResidencialDTO addResidencia(String nombreUnidad, String divison, String residencia, String barrio) throws Exception {
+        System.out.println("buscando"+nombreUnidad);
         UnidadResidencialDTO buscada = find(nombreUnidad);
+        System.out.println("encontrada"+buscada.getNombre());
         if (buscada == null) {
             throw new Exception("No hay unidad residencial con ese nombre");
         }
         String key = divison+"_"+nombreUnidad;
         System.out.println(key+"*********************************************************");
         DivisionResidencialDTO divisionBuscado = logicDR.find(key);
+        System.out.println("Hola");
+        System.out.println("DIV BUSC"+divisionBuscado);
         if (divisionBuscado == null) {
+            System.out.println("ES un nulllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
             throw new Exception("No hay una division residencial con ese nombre");
         }
         System.out.println("PASO1111*********************************************************");
         key = residencia+"_"+divison+"_"+nombreUnidad;
-        logicR.add(new ResidenciaDTO(key));
+        logicR.add(new ResidenciaDTO(key, barrio));
         divisionBuscado.agregarResidencia(residencia);
         System.out.println("PASO2222*********************************************************");
         logicDR.update(divisionBuscado);
