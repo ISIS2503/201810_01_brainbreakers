@@ -39,4 +39,5 @@ public interface IUnidadResidencialLogic {
     public List<UnidadResidencialDTO> all();
     public Boolean delete(String id);
     public List<String> darAlertasUnidad(String nombre, String mes);
+    public List<String> darAlertasUnidadResidencial(String nombre);
 }
