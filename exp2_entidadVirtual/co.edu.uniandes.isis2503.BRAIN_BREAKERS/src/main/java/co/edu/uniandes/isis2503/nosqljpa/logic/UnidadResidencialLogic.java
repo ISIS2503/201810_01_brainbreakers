@@ -139,6 +139,33 @@ public class UnidadResidencialLogic implements IUnidadResidencialLogic {
         }
         return alertas;
     }
+    
+    @Override
+    public List<String> darAlertasUnidadResidencial(String nombre)
+    {
+        List<String> alertas = new ArrayList<>();
+        UnidadResidencialDTO buscada = find(nombre);
+        System.out.println("Busqueda "+buscada);
+        System.out.println("Busqueda "+buscada.getDivisionesResidenciales());
+        List<String> divisiones = buscada.getDivisionesResidenciales();
+        int tamDivs = divisiones.size();
+        System.out.println("divisiones"+tamDivs);
+        for (int i = 0; i < tamDivs; i++) {
+            String div = divisiones.get(i);
+            List<String> residencias = logicDR.find(div+"_"+nombre).getResidencias();
+            System.out.println("residencias "+residencias);
+            for (int j = 0; j < residencias.size(); j++) {
+                System.out.println("la unidad"+residencias.get(j));
+                System.out.println("la unidad"+residencias.get(j)+"_"+div+"_"+nombre);
+                ResidenciaDTO resid =logicR.find(residencias.get(j)+"_"+div+"_"+nombre);
+                System.out.println("RESID: "+resid);
+                for (int k = 0; k < resid.getAlertas().size(); k++) {
+                    alertas.add(resid.getAlertas().get(k));
+                }
+            }
+        }
+        return alertas;
+    }
 
     @Override
     public List<UnidadResidencialDTO> all() {

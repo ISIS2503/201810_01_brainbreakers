@@ -112,6 +112,15 @@ public class UnidadResidencialService {
         return unidadResidencialLogic.darAlertasUnidad(ur, mes);
     }
     
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorUnidadResidencial")
+    public List<String> getAlarmasPorUnidadResidencialYmes(@QueryParam("nombreUnidadResidencial")String ur)
+    {      
+        System.out.println("Entra");
+        return unidadResidencialLogic.darAlertasUnidadResidencial(ur);
+    }
+    
 
 
     @DELETE
