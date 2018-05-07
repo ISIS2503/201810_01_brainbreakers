@@ -164,6 +164,7 @@ public class ResidenciaLogic implements IResidenciaLogic {
 
     @Override
     public ResidenciaDTO find(String id) {
+        System.out.println("está buscando : "+ id);
         return CONVERTER.entityToDto(persistence.find(id));
     }
 

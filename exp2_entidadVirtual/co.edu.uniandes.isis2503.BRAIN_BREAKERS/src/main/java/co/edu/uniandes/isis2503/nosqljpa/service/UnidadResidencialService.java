@@ -107,17 +107,9 @@ public class UnidadResidencialService {
     //@Secured({Role.admin})
     @Path("/getAlarmasPorUnidadResidencialYMes")
     public List<String> getAlarmasPorUnidadResidencialYmes(@QueryParam("nombreUnidadResidencial")String ur, @QueryParam("mes")String mes)
-    {
-        ArrayList<String> alertasBarrio = new ArrayList<>();
-        List<UnidadResidencialDTO> unidades = unidadResidencialLogic.all();
-        for (int i = 0; i < unidades.size(); i++) {
-            UnidadResidencialDTO actual =unidades.get(i);
-            if(actual.getNombre().equals(ur)){
-            String divisionActual = actual.getDivisionesResidenciales().get(i);
-          }
-        }
-        //if(alertasBarrio.size()==0){}
-        return alertasBarrio;
+    {      
+        System.out.println("Entra");
+        return unidadResidencialLogic.darAlertasUnidad(ur, mes);
     }
     
 

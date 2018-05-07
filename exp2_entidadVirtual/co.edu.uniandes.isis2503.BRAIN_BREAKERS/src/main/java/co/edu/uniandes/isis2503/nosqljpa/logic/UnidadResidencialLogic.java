@@ -25,12 +25,14 @@ package co.edu.uniandes.isis2503.nosqljpa.logic;
 
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.UnidadResidencialConverter.CONVERTER;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.entity.DivisionResidencialEntity;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.UnidadResidencialPersistence;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.DivisionResidencialPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -105,6 +107,37 @@ public class UnidadResidencialLogic implements IUnidadResidencialLogic {
     @Override
     public UnidadResidencialDTO find(String id) {
         return CONVERTER.entityToDto(persistence.find(id));
+    }
+    
+    @Override
+    public List<String> darAlertasUnidad(String nombre, String mes)
+    {
+        List<String> alertas = new ArrayList<>();
+        UnidadResidencialDTO buscada = find(nombre);
+        System.out.println("Busqueda "+buscada);
+        System.out.println("Busqueda "+buscada.getDivisionesResidenciales());
+        List<String> divisiones = buscada.getDivisionesResidenciales();
+        int tamDivs = divisiones.size();
+        System.out.println("divisiones"+tamDivs);
+        for (int i = 0; i < tamDivs; i++) {
+            String div = divisiones.get(i);
+            List<String> residencias = logicDR.find(div+"_"+nombre).getResidencias();
+            System.out.println("residencias "+residencias);
+            for (int j = 0; j < residencias.size(); j++) {
+                System.out.println("la unidad"+residencias.get(j));
+                System.out.println("la unidad"+residencias.get(j)+"_"+div+"_"+nombre);
+                ResidenciaDTO resid =logicR.find(residencias.get(j)+"_"+div+"_"+nombre);
+                System.out.println("RESID: "+resid);
+                for (int k = 0; k < resid.getAlertas().size(); k++) {
+                    String alertaAct = resid.getAlertas().get(k);
+                    String[] campos = alertaAct.split(";");
+                    if(campos[1].equals(mes)){
+                       alertas.add(alertaAct);
+                    }
+                }
+            }
+        }
+        return alertas;
     }
 
     @Override
