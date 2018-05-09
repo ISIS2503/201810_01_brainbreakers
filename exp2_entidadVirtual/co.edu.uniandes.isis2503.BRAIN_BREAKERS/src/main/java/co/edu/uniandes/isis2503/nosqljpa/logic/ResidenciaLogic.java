@@ -63,15 +63,14 @@ public class ResidenciaLogic implements IResidenciaLogic {
         ResidenciaDTO resultDto = CONVERTER.entityToDto(persistence.add(result));
         return resultDto;
     }
-    
+
     @Override
     public void validarUsuario(String user, String nombreResidencia) throws Exception {
         ResidenciaEntity result = persistence.find(nombreResidencia);
         if (result == null) {
             throw new Exception("no existe esa residencia");
         }
-        if(result.buscarUsuario(user)== null)
-        {
+        if (result.buscarUsuario(user) == null) {
             throw new Exception("no es un usuario de la residencia");
         }
         ResidenciaDTO resultDto = CONVERTER.entityToDto(persistence.add(result));
@@ -175,5 +174,10 @@ public class ResidenciaLogic implements IResidenciaLogic {
     public Boolean delete(String id) {
         return persistence.delete(id);
     }
+
+    ////@Override
+    //public List<String> getAllHorarios(String id) {
+    //    return persistence.find(id).getHorarios();
+    //}
 
 }
