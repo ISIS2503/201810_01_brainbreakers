@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "2fca198f-510f-4840-b9ee-833219410aa1",
+		"name": "EXP2_PARCIAL_CON_SEGURIDAD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AGREGAR UN USUARIO A UNA RESIDENCIA",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"reyes1099@outlook.com\",\n\t\"password\":\"Pass1234_123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/add?residencia=Apartamento_01_Torre_1_Lantana&tipo=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"add"
+					],
+					"query": [
+						{
+							"key": "residencia",
+							"value": "Apartamento_01_Torre_1_Lantana"
+						},
+						{
+							"key": "tipo",
+							"value": "1"
+						}
+					]
+				},
+				"description": "http://localhost:8080/users/add?residencia=Apartamento_01_Torre_1_Lantana&tipo=1"
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUALIZAR INFO USUARIO: PASSWORD",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \t\"correo\":\"alvaroyepes97@gmail.com\",\r\n\t\"password\":\"Pass1234_123\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/updatePassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				},
+				"description": "http://localhost:8080/users/updatePassword"
+			},
+			"response": []
+		},
+		{
+			"name": "AGREGAR UNA NUEVA CLAVE (ej: 5454)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/controlador/agregar?clave=5454&index=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controlador",
+						"agregar"
+					],
+					"query": [
+						{
+							"key": "clave",
+							"value": "5454"
+						},
+						{
+							"key": "index",
+							"value": "5"
+						}
+					]
+				},
+				"description": "http://localhost:8080/controlador/agregar?clave=5454&index=5"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN CON TOKEN-CLIENT SECRET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_id\": \"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\n    \"client_secret\": \"7vomXrSQwHIfwwhygg9IR4MYsSDl4Z1VeS7w8Q7mZk9p4GIktXFjH4yZkyBd2tme\",\n    \"audience\": \"https://brainbreakers.auth0.com/api/v2/\",\n    \"grant_type\": \"client_credentials\"\n}"
+				},
+				"url": {
+					"raw": "https://brainbreakers.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"brainbreakers",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "https://brainbreakers.auth0.com/oauth/token"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN CON USERNAME-PASSWORD",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\t\"grant_type\":\"http://auth0.com/oauth/grant-type/password-realm\",\n\t\"username\": \"reyes1099@outlook.com\",\n\t\"password\": \"Pass1234_123\",\n\t\"audience\": \"https://brainbreakers.auth0.com/api/v2/\", \n\t\"scope\": \"openid\",\n\t\"client_id\": \"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\", \n\t\"client_secret\": \"7vomXrSQwHIfwwhygg9IR4MYsSDl4Z1VeS7w8Q7mZk9p4GIktXFjH4yZkyBd2tme\", \n\t\"realm\": \"Username-Password-Authentication\"\n}"
+				},
+				"url": {
+					"raw": "https://brainbreakers.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"brainbreakers",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "https://brainbreakers.auth0.com/oauth/token"
+			},
+			"response": []
+		}
+	]
+}

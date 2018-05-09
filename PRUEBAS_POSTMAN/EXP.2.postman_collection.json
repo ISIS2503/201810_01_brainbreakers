@@ -1,0 +1,501 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EXP.2",
+		"_postman_id": "d315fa3a-aaac-5b05-d75b-6fdb30c9f2f0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OBTENER TODAS LA UNIDADES RESIDENCIALES",
+			"request": {
+				"url": "http://localhost:8080/unidadResidencial",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/unidadResidencial"
+			},
+			"response": []
+		},
+		{
+			"name": "PUBLICAR UNA UNIDAD RESIDENCIAL",
+			"request": {
+				"url": "http://localhost:8080/unidadResidencial",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Lantana\",\n    \"divisionesResidenciales\": []\n}"
+				},
+				"description": "http://localhost:8080/unidadResidencial"
+			},
+			"response": []
+		},
+		{
+			"name": "PUBLICAR UNA DIVISION RESIDENCIAL ",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/Lantana/addDivisionResidencial?division=Torre1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"Lantana",
+						"addDivisionResidencial"
+					],
+					"query": [
+						{
+							"key": "division",
+							"value": "Torre1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/unidadResidencial/Lantana/addDivisionResidencial?division=Torre1"
+			},
+			"response": []
+		},
+		{
+			"name": "GUARDAR RESIDENCIA EN UNA DIVISION Y UNIDAD",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/Lantana/Torre1/addResidencia?residencia=Apartamento_01&barrio=barrio1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"Lantana",
+						"Torre1",
+						"addResidencia"
+					],
+					"query": [
+						{
+							"key": "residencia",
+							"value": "Apartamento_01",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "barrio",
+							"value": "barrio1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/unidadResidencial/Lantana/Torre1/addResidencia?residencia=Apartamento_01&barrio=barrio1"
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER TODAS LAS RESIDENCIAS",
+			"request": {
+				"url": "http://localhost:8080/residencia",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/residencia"
+			},
+			"response": []
+		},
+		{
+			"name": "AGREGAR UNA ALARMA A LA RESIDENCIA",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/residencia/Lantana/Torre1/Apartamento_01/addAlarma?alerta=alerta_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"residencia",
+						"Lantana",
+						"Torre1",
+						"Apartamento_01",
+						"addAlarma"
+					],
+					"query": [
+						{
+							"key": "alerta",
+							"value": "alerta_1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/residencia/Lantana/Torre1/Apartamento_01/addAlarma?alerta=alerta_1"
+			},
+			"response": []
+		},
+		{
+			"name": "CONSULTAR TODAS LAS ALARMAS DE UN MISMO BARRIO",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/residencia/getAlarmasPorBarrioYMes?barrio=barrio1&mes=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"residencia",
+						"getAlarmasPorBarrioYMes"
+					],
+					"query": [
+						{
+							"key": "barrio",
+							"value": "barrio1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "mes",
+							"value": "5",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "barrio",
+						"value": "barrio1",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": "http://localhost:8080/residencia/getAlarmasPorBarrio?barrio=barrio1"
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER LAS ALARMAS DE UNA RESIDENCIA (INMUEBLE) DADA DE UN MISMO MES ",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/residencia/getAlarmasPorResidenciaYMes?nombreResidencia=Apartamento_01_Torre1_Lantana&mes=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"residencia",
+						"getAlarmasPorResidenciaYMes"
+					],
+					"query": [
+						{
+							"key": "nombreResidencia",
+							"value": "Apartamento_01_Torre1_Lantana",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "mes",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/residencia/getAlarmasPorResidenciaYMes?nombreResidencia=Apartamento_01_Torre1_Lantana&mes=1"
+			},
+			"response": []
+		},
+		{
+			"name": "PUBLICAR UNA UNIDAD RESIDENCIAL CITYU",
+			"request": {
+				"url": "http://localhost:8080/unidadResidencial",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"CityU\",\n    \"divisionesResidenciales\": []\n}"
+				},
+				"description": "http://localhost:8080/unidadResidencial"
+			},
+			"response": []
+		},
+		{
+			"name": "PUBLICAR UNA DIVISION RESIDENCIAL (torre1 a city u)",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/CityU/addDivisionResidencial?division=Torre2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"CityU",
+						"addDivisionResidencial"
+					],
+					"query": [
+						{
+							"key": "division",
+							"value": "Torre2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GUARDAR RESIDENCIA EN UNA DIVISION Y UNIDAD en cityU",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/CityU/Torre2/addResidencia?residencia=Apartamento_12&barrio=Aguas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"CityU",
+						"Torre2",
+						"addResidencia"
+					],
+					"query": [
+						{
+							"key": "residencia",
+							"value": "Apartamento_12",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "barrio",
+							"value": "Aguas",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AGREGAR UNA ALARMA A LA RESIDENCIA de CityU",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/residencia/CityU/Torre2/Apartamento_12/addAlarma?alerta=alerta_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"residencia",
+						"CityU",
+						"Torre2",
+						"Apartamento_12",
+						"addAlarma"
+					],
+					"query": [
+						{
+							"key": "alerta",
+							"value": "alerta_1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CONSULTAR TODAS LAS ALARMAS DE UN MISMO BARRIO (aguas)",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/residencia/getAlarmasPorBarrioYMes?barrio=aguas&mes=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"residencia",
+						"getAlarmasPorBarrioYMes"
+					],
+					"query": [
+						{
+							"key": "barrio",
+							"value": "aguas",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "mes",
+							"value": "5",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "barrio",
+						"value": "barrio1",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": "http://localhost:8080/residencia/getAlarmasPorBarrio?barrio=aguas"
+			},
+			"response": []
+		},
+		{
+			"name": "obtener todas las alarmas",
+			"request": {
+				"url": "http://localhost:8080/residencia/allAlarmas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/residencia/allAlarmas"
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER ALARMAS POR UNIDAD RESIDENCIAL Y MES (DE CITYU Y MAYO)",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/getAlarmasPorUnidadResidencialYMes?nombreUnidadResidencial=CityU&mes=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"getAlarmasPorUnidadResidencialYMes"
+					],
+					"query": [
+						{
+							"key": "nombreUnidadResidencial",
+							"value": "CityU",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "mes",
+							"value": "5",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/unidadResidencial/getAlarmasPorUnidadResidencialYMes?nombreUnidadResidencial=CityU&mes=5"
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER TODAS LAS ALERTAS DE UNA UNIDAD RESIDENCIAL (ej de CityU)",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/unidadResidencial/getAlarmasPorUnidadResidencial?nombreUnidadResidencial=CityU",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unidadResidencial",
+						"getAlarmasPorUnidadResidencial"
+					],
+					"query": [
+						{
+							"key": "nombreUnidadResidencial",
+							"value": "CityU",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/unidadResidencial/getAlarmasPorUnidadResidencial?nombreUnidadResidencial=CityU"
+			},
+			"response": []
+		},
+		{
+			"name": "LOG OUT DEL USUARIO ACTUAL",
+			"request": {
+				"url": "https://brainbreakers.auth0.com/v2/logout",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "https://brainbreakers.auth0.com/v2/logout"
+			},
+			"response": []
+		}
+	]
+}

@@ -43,7 +43,11 @@ public class DivisionResidencialConverter implements IDivisionResidencialConvert
 
     @Override
     public DivisionResidencialDTO entityToDto(DivisionResidencialEntity entity) {
-        DivisionResidencialDTO dto = new DivisionResidencialDTO();
+        System.out.println(entity.getNombre());
+        System.out.println(entity.getResidencias());
+        System.out.println(entity.getUnidadResidencial());
+
+        DivisionResidencialDTO dto = new DivisionResidencialDTO();      
         dto.setNombre(entity.getNombre());
         dto.setResiencias(entity.getResidencias());
         dto.setUnidadResidencial(entity.getUnidadResidencial());

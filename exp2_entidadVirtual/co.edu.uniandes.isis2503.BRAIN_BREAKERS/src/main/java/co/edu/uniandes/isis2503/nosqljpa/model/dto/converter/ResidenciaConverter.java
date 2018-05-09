@@ -49,12 +49,13 @@ public class ResidenciaConverter implements IResidenciaConverter {
         dto.setHorarios(entity.getHorarios());
         dto.setNumeroClaves(entity.getNumeroClaves());
         dto.setUsusarios(entity.getUsusarios());
+        dto.setBarrio(entity.getBarrio());
         return dto;
     }
 
     @Override
     public ResidenciaEntity dtoToEntity(ResidenciaDTO dto) {
-        ResidenciaEntity entity = new ResidenciaEntity(dto.getNombre());
+        ResidenciaEntity entity = new ResidenciaEntity(dto.getNombre(), dto.getBarrio());
         entity.setAlertas(dto.getAlertas());
         entity.setHorarios(dto.getHorarios());
         entity.setNumeroClaves(dto.getNumeroClaves());

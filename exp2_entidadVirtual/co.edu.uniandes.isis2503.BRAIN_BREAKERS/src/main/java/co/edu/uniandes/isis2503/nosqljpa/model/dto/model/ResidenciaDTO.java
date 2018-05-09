@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ResidenciaDTO {
    
     private String nombre;
+    
+    private String barrio;
 
     private List<String> alertas;
   
@@ -50,8 +52,9 @@ public class ResidenciaDTO {
         numeroClaves = 0;
     }
 
-    public ResidenciaDTO(String pNombre) {
+    public ResidenciaDTO(String pNombre, String pBarrio) {
         nombre =pNombre;
+        barrio = pBarrio;
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
         ususarios = new ArrayList<>();
@@ -75,6 +78,16 @@ public class ResidenciaDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
+    
+    
 
     public List<String> getAlertas() {
         return alertas;

@@ -89,6 +89,7 @@ public class ResidenciaLogic implements IResidenciaLogic {
         return retorno;
     }
 
+    //ESTE METODO HACE LO MISMO QUE EL ANTERIOR, NO LO BORRO PORQUE NO SE SI ESTEBAN LO USÓ
     @Override
     public List<AlertaDTO> getAllAlertasByUnidad(String nombreUnidad) {
         ResidenciaDTO result = find(nombreUnidad);
@@ -162,6 +163,7 @@ public class ResidenciaLogic implements IResidenciaLogic {
 
     @Override
     public ResidenciaDTO find(String id) {
+        System.out.println("está buscando : "+ id);
         return CONVERTER.entityToDto(persistence.find(id));
     }
 

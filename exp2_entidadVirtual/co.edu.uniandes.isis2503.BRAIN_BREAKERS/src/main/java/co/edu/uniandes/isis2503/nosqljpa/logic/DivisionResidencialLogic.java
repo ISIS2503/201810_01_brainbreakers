@@ -65,6 +65,8 @@ public class DivisionResidencialLogic implements IDivisionResidencialLogic {
 
     @Override
     public DivisionResidencialDTO find(String id) {
+        System.out.println("ESTA BUSCANDO"+id);
+        System.out.println("ES ESTO:  "+CONVERTER.entityToDto(persistence.find(id)));
         return CONVERTER.entityToDto(persistence.find(id));
     }
 

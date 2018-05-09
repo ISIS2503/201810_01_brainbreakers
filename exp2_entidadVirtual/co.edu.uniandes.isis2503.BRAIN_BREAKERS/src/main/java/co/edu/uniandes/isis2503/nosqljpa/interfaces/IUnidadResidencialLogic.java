@@ -33,9 +33,11 @@ import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
 public interface IUnidadResidencialLogic {
     public UnidadResidencialDTO add(UnidadResidencialDTO dto);
     public UnidadResidencialDTO addDivison(String nombreUnidad, String division) throws Exception;
-    public DivisionResidencialDTO addResidencia(String nombreUnidad, String divison, String residencia) throws Exception;
+    public DivisionResidencialDTO addResidencia(String nombreUnidad, String divison, String residencia, String barrio) throws Exception;
     public UnidadResidencialDTO update(UnidadResidencialDTO dto);
     public UnidadResidencialDTO find(String id);
     public List<UnidadResidencialDTO> all();
     public Boolean delete(String id);
+    public List<String> darAlertasUnidad(String nombre, String mes);
+    public List<String> darAlertasUnidadResidencial(String nombre);
 }

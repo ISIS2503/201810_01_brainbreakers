@@ -23,16 +23,16 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
-import ch.qos.logback.classic.util.ContextInitializer;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidencialLogic;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlertaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.DivisionResidencialDTO;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -53,14 +53,13 @@ import javax.ws.rs.core.Response;
 public class UnidadResidencialService {
 
     private final IUnidadResidencialLogic unidadResidencialLogic;
-   
 
     public UnidadResidencialService() {
         this.unidadResidencialLogic = new UnidadResidencialLogic();
     }
 
     @POST
-    @Secured({Role.yale})
+    //@Secured({Role.yale})
     public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.add(dto);
     }
@@ -70,18 +69,19 @@ public class UnidadResidencialService {
         return Response.ok().entity("{\"Hola Mundo\"}").status(Response.Status.ACCEPTED).build();
     }
     @POST
-    @Secured({Role.admin})
+    //@Secured({Role.admin})
     @Path("/{nombre}/addDivisionResidencial")
     public UnidadResidencialDTO addDivision(@PathParam("nombre") String nombre, @QueryParam("division") String division) throws Exception{
         return unidadResidencialLogic.addDivison(nombre, division);
     }
     
     @POST
-    @Secured({Role.admin})
+    //@Secured({Role.admin})
     @Path("/{nombreU}/{nombreD}/addResidencia")
-    public DivisionResidencialDTO addResidencia(@PathParam("nombreU") String nombreU,@PathParam("nombreD") String nombreD ,@QueryParam("residencia") String residencia) throws Exception{
+    public DivisionResidencialDTO addResidencia(@PathParam("nombreU") String nombreU,@PathParam("nombreD") String nombreD ,@QueryParam("residencia") String residencia, @QueryParam("barrio") String barrio) throws Exception{
         System.out.println("-----LLEGO++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        return unidadResidencialLogic.addResidencia(nombreU, nombreD, residencia);
+        System.out.println(residencia+"-"+ barrio);
+        return unidadResidencialLogic.addResidencia(nombreU, nombreD, residencia, barrio);
     }
     
     @PUT
@@ -98,10 +98,30 @@ public class UnidadResidencialService {
     }
 
     @GET
-    @Secured({Role.yale})
+    //@Secured({Role.yale})
     public List<UnidadResidencialDTO> all() {
         return unidadResidencialLogic.all();
     }
+    
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorUnidadResidencialYMes")
+    public List<String> getAlarmasPorUnidadResidencialYmes(@QueryParam("nombreUnidadResidencial")String ur, @QueryParam("mes")String mes)
+    {      
+        System.out.println("Entra");
+        return unidadResidencialLogic.darAlertasUnidad(ur, mes);
+    }
+    
+    @GET
+    //@Secured({Role.admin})
+    @Path("/getAlarmasPorUnidadResidencial")
+    public List<String> getAlarmasPorUnidadResidencialYmes(@QueryParam("nombreUnidadResidencial")String ur)
+    {      
+        System.out.println("Entra");
+        return unidadResidencialLogic.darAlertasUnidadResidencial(ur);
+    }
+    
+
 
     @DELETE
     @Secured({Role.yale})

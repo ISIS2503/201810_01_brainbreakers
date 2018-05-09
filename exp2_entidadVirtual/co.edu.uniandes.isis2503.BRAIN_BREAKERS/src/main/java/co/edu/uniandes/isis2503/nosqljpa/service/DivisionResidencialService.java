@@ -72,7 +72,7 @@ public class DivisionResidencialService {
     }
 
     @GET
-    @Secured({Role.admin})
+    //@Secured({Role.admin})
     public List<DivisionResidencialDTO> all() {
         return divisionResidencialLogic.all();
     }
