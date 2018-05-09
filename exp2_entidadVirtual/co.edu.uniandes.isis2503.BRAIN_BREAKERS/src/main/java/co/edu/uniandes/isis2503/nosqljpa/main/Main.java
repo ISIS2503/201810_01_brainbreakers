@@ -23,20 +23,18 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.main;
 
+import co.edu.uniandes.isis2503.nosqljpa.jobQuartz.MyJob;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.quartz.Job;
 import org.quartz.Scheduler;
+import org.quartz.*;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.*;
-import org.quartz.JobDetail;
 import static org.quartz.TriggerBuilder.*;
 import static org.quartz.SimpleScheduleBuilder.*;
-import org.quartz.Trigger;
-
 /**
  *
  * @author Luis Felipe Mendivelso Osorio <lf.mendivelso10@uniandes.edu.co>
@@ -59,13 +57,11 @@ public class Main {
             root.setResourceBase(webappDirLocation);
             root.setParentLoaderPriority(true);
             server.setHandler(root);
-            server.start();
-            server.join();
-
+            
             // Grab the Scheduler instance from the Factory
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             // define the job and tie it to our MyJob class
-            JobDetail job = newJob(Job.class)
+            JobDetail job = newJob(MyJob.class)
                     .withIdentity("job1", "group1")
                     .build();
 
@@ -74,15 +70,17 @@ public class Main {
                     .withIdentity("trigger1", "group1")
                     .startNow()
                     .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(40)
+                            .withIntervalInSeconds(20)
                             .repeatForever())
                     .build();
 
             // Tell quartz to schedule the job using our trigger
             scheduler.scheduleJob(job, trigger);
             
+            server.start();
             // and start it off
             scheduler.start();
+       
 
         } catch (InterruptedException ex) {
             LOG.log(Level.WARNING, ex.getMessage());

@@ -3,7 +3,6 @@ co\edu\uniandes\isis2503\nosqljpa\interfaces\IResidenciaConverter.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UnidadResidencialConverter.class
 co\edu\uniandes\isis2503\nosqljpa\logic\ResidenciaLogic.class
 co\edu\uniandes\isis2503\nosqljpa\auth\Secured.class
-co\edu\uniandes\isis2503\nosqljpa\jobQuartz\Job.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\model\UserDTO.class
 co\edu\uniandes\isis2503\nosqljpa\logic\DivisionResidencialLogic.class
 co\edu\uniandes\isis2503\nosqljpa\model\entity\ResidenciaEntity.class
@@ -29,6 +28,7 @@ co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialConverter.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UserConverter.class
 co\edu\uniandes\isis2503\nosqljpa\main\Main.class
 co\edu\uniandes\isis2503\nosqljpa\service\WiringService.class
+co\edu\uniandes\isis2503\nosqljpa\jobQuartz\MyJob.class
 co\edu\uniandes\isis2503\nosqljpa\logic\UnidadResidencialLogic.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialLogic.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\model\AlertaDTO.class

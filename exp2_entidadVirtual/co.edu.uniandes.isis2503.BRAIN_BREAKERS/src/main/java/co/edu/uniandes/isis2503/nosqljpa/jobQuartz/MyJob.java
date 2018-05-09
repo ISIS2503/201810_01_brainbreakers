@@ -23,39 +23,32 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.jobQuartz;
 
-import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.entity.ResidenciaEntity;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.ResidenciaPersistence;
 import co.edu.uniandes.isis2503.nosqljpa.service.WiringService;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
-import static org.quartz.JobBuilder.*;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import static org.quartz.TriggerBuilder.*;
-import static org.quartz.SimpleScheduleBuilder.*;
 
 /**
  *
  * @author aa.yepes
  */
-public class Job implements org.quartz.Job {
+public class MyJob implements org.quartz.Job {
 
+    
     private ResidenciaPersistence persistResidencia;
     private WiringService serviceW;
-
-    public Job() {
-
+    
+    public MyJob() {
         persistResidencia = new ResidenciaPersistence();
-        serviceW = new WiringService();
+        serviceW =  new WiringService();
     }
 
     @Override
     public void execute(JobExecutionContext jec) throws JobExecutionException {
+        System.out.println("se esta haciendo la verificacion de las contrasenias");
 
         for (ResidenciaEntity resi : persistResidencia.all()) {
             for (String horario : resi.getHorarios()) {
@@ -64,24 +57,19 @@ public class Job implements org.quartz.Job {
                     Date fechaInic = format.parse(horario.split(";")[0]);
                     Date fechaFin = format.parse(horario.split(";")[1]);
                     Date fechaAct = new Date();
-                    if(fechaFin.compareTo(fechaAct) == -1 )
-                    {
+                    if (fechaFin.compareTo(fechaAct) == -1) {
                         serviceW.deleteAllPasswords();
-                    } 
-                    else if (fechaInic.compareTo(fechaAct) == -1 && fechaFin.compareTo(fechaAct) == 1)
-                    {
-                        
+                    } else if (fechaInic.compareTo(fechaAct) == -1 && fechaFin.compareTo(fechaAct) == 1) {
+
                     }
 
                 } catch (Exception e) {
-                    
+
                     throw new JobExecutionException("la actualizacion fallo");
                 }
 
             }
         }
-
-        System.err.println("Hello World!  MyJob is executing."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

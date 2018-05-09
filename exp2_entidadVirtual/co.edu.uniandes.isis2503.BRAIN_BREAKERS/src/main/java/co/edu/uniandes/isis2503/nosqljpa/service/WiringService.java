@@ -56,78 +56,91 @@ import org.fusesource.mqtt.client.QoS;
 @Path("/controlador")
 @Produces(MediaType.APPLICATION_JSON)
 public class WiringService {
-    
+
     private final IResidenciaLogic residenciaLogic;
-    
-    public WiringService ()
-    {
+
+    public WiringService() {
         residenciaLogic = new ResidenciaLogic();
     }
-    
 
     public void publish(String mensaje) throws Exception {
         System.out.println("Llego 1");
         MQTT mqtt = new MQTT();
         mqtt.setHost("tcp://172.24.42.29:8083");
-        
+
         // crear conexion con el broker
         BlockingConnection connection = mqtt.blockingConnection();
         connection.connect();
         System.out.println("Llego 2");
         // publicar al topico el mensaje ON u OFF en fncion a la intensidad de la lectura
         connection.publish("torre1.1-201", mensaje.getBytes(), QoS.AT_LEAST_ONCE, false);
-        
+
         System.out.println("Llego 3");
         connection.disconnect();
         System.out.println("Llego 4");
     }
-    
-    
-   
- 
+
     @POST
     @Secured({Role.user})
-    //
     @Path("/agregar")
-    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index,@QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
+    public Response addPassword(@QueryParam("clave") String clave, @QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception {
         System.out.println("Resourse");
-        //residenciaLogic.validarUsuario(user, residencia);
-        publish("agregarClave;"+clave+";"+index);
+        residenciaLogic.validarUsuario(user, residencia);
+        for (int i = 0; i < 4; i++) {
+            publish("agregarClave;" + clave + ";" + index);
+        }
+
         return Response.ok().entity("{\"llego\":\"Agregar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
-    
-   
-   
+
+    @POST
+    @Secured({Role.user})
+    @Path("/silenciarAlarma")
+    public Response silenciarAlarma(@QueryParam("alarma") String alarma, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception {
+        System.out.println("Resourse");
+        residenciaLogic.validarUsuario(user, residencia);
+        for (int i = 0; i < 4; i++) {
+            publish("silenciarAlarma;" + alarma);
+        }
+        
+        return Response.ok().entity("{\"llego\":\"Silenciar alarma\"}").status(Response.Status.ACCEPTED).build();
+    }
+
     @POST
     @Secured({Role.user})
     @Path("/cambiar")
-    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index ,  @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
+    public Response updatePassword(@QueryParam("clave") String clave, @QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception {
         System.out.println("Resourse");
         residenciaLogic.validarUsuario(user, residencia);
-        publish("actualizarClave;"+clave+";"+index);
+        for (int i = 0; i < 4; i++) {
+            publish("actualizarClave;" + clave + ";" + index);
+        }
+        
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
-    
+
     @POST
     @Secured({Role.user})
     @Path("/borrar")
-    public Response deletePassword(@QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception{
+    public Response deletePassword(@QueryParam("index") String index, @QueryParam("residenca") String residencia, @QueryParam("user") String user) throws Exception {
         System.out.println("Resourse");
         residenciaLogic.validarUsuario(user, residencia);
-        publish("borrarClave;0;"+index);
+        for (int i = 0; i < 4; i++) {
+            publish("borrarClave;0;" + index);
+        }
+        
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
-    
+
     @POST
-    @Secured({Role.user})
+    //@Secured({Role.user})
     @Path("/borrartodas")
-    public Response deleteAllPasswords() throws Exception{
+    public Response deleteAllPasswords() throws Exception {
         System.out.println("Resourse");
-        publish("borrarTodo;0;0"+" \n");
+        for (int i = 0; i < 4; i++) {
+            publish("borrarTodo;0;0");
+        } 
         return Response.ok().entity("{\"llego\":\"Actualizar contraseña\"}").status(Response.Status.ACCEPTED).build();
     }
-    
-    
-    
-    
+
 }

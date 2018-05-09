@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialLogic.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IResidenciaLogic.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\UnidadResidencialPersistence.java
@@ -17,6 +16,7 @@ C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVir
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\JPAConnection.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\UserDTO.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\auth\AuthenticationFilter.java
+C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\jobQuartz\MyJob.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\ResidenciaDTO.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\Persistencer.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\ResidenciaEntity.java
@@ -28,7 +28,6 @@ C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVir
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\ResidenciaLogic.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\UserEntity.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\DivisionResidencialLogic.java
-C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\jobQuartz\Job.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UnidadResidencialConverter.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\DivisionResidencialConverter.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UserConverter.java
@@ -41,46 +40,3 @@ C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVir
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\UserService.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\UserLogic.java
 C:\Users\aa.yepes\Documents\experimentos\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\UnidadResidencialService.java
-=======
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\DivisionResidencialConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\RecidenciaService.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\UnidadResidencialEntity.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UserConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\auth\CORSFilter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\UserPersistence.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\UnidadResidencialService.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\main\Main.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\UnidadResidencialDTO.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\DivisionResidencialService.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IDivisionResidencialLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\UserEntity.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\DivisionResidencialPersistence.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\ResidenciaPersistence.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IUserLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\UnidadResidencialConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\AlertaDTO.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\WiringService.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\UnidadResidencialPersistence.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\JPAConnection.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\auth\AuthenticationFilter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IUserCoverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\UserLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\persistence\Persistencer.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\UserDTO.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\auth\Secured.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IUnidadResidencialConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IDivisionResidencialConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\DivisionResidencialLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IResidenciaConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\DivisionResidencialDTO.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\UnidadResidencialLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\logic\ResidenciaLogic.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\auth\AuthorizationFilter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\service\UserService.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\ResidenciaEntity.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\ResidenciaConverter.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\entity\DivisionResidencialEntity.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\model\dto\model\ResidenciaDTO.java
-C:\Users\ms.osorio\Desktop\proyectoARQUISOFT\201810_01_brainbreakers\exp2_entidadVirtual\co.edu.uniandes.isis2503.BRAIN_BREAKERS\src\main\java\co\edu\uniandes\isis2503\nosqljpa\interfaces\IResidenciaLogic.java
->>>>>>> d6502482e4940635feb71e20e9e8370892a1f8a0
