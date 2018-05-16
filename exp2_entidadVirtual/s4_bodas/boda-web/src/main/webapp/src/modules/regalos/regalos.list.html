@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div><h2>Lista de Regalos</h2></div>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="botones" ui-sref="regaloCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nuevo regalo</a>
+            </div>
+    <div class="panel-body">
+
+        </div>
+        <div class="row">
+            <div class="col-md-2" ng-repeat="regalo in regalosRecords">
+                <div class="thumbnail">                 
+                    <a ui-sref="regaloDetail({regaloId: regalo.id})" id="{{$index}}-name"><img class="img-responsive" ng-src='{{regalo.imagen}}' alt="{{regalo.name}}" style =" width:100%;height:140px" /> </a>                 
+                    <div class="caption text-center">
+                       {{regalo.name}}
+                        <a class="btn btn-danger btn-sm" ui-sref="regaloDelete({regaloId: regalo.id})"><span class="glyphicon glyphicon-trash"></span></a> 
+                        <a class="btn btn-default btn-sm" ui-sref="regaloUpdate({regaloId: regalo.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>

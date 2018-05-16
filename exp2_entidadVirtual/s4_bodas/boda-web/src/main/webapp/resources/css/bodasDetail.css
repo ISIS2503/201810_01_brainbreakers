@@ -1,0 +1,20 @@
+
+.margin-top{
+    padding-top: 20px;
+}
+
+
+#nombreBoda, #headPanel {
+   
+   text-align: center;
+   background: #ffdffc;
+   font-size: xx-large;
+   font-family: 'Pacifico', cursive;
+}
+
+.panel-default
+{
+   background: #ffe6e9;
+}
+
+

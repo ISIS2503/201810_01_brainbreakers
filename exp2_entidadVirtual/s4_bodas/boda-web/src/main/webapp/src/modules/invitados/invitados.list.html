@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="resources/css/style.css">
+<div class="panel panel-danger">
+    <div><h2>Lista de Invitados </h2>                    
+    </div>
+
+    <div class="panel-body">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <!-- {%FOOTER_LINK}   <div class="btn-group mr-2" role="group" aria-label="First group">-->
+            <a class="btn btn-info" style="background: #F48FB1;border: none;" ui-sref="invitadoCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nuevo invitado</a>
+
+            <form class="navbar-form navbar-right" ng-submit="" name="busqueda">
+                <div class="input-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Buscar invitado" required ng-model="nameInv">
+                    </div>
+                    <div class="input-group-btn">
+                        <input type="submit" value="Buscar" class="btn btn-default" />
+                    </div>
+                </div>
+            </form>
+
+            <div class="btn-group right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-init="criterioOrdenar = 'Nombre'">
+                    <strong>Ordenar: </strong>{{criterioOrdenar}}<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="orderInv('name', 'Nombre')">Nombre</a></li>
+                    <li><a ng-click="orderInv('documento', 'Documento')">Documento</a></li>
+                    <li><a ng-click="orderInv('correo', 'Correo')">Email</a></li>
+                </ul>
+            </div>
+
+            <!--<div class="large-12 columns">
+                     <label>Establece un orden: </label>
+                      <select ng-model="tipoOrden">
+                     <option value="documento">Documento</option>
+                     <option value="name">Nombre</option>
+                             <option value="correo">Correo</option>
+                          </select>
+                         </div>-->
+            <!--  </div>-->
+        </div>
+    </div>
+    <div    class =" col-md-3">
+        <div class="thumbnail"> 
+            <div class="caption text-center"><img id="iconos" src="resources/icons/heart.png">Confirmados: {{rta}}, Pendientes: {{otra}}</div>
+
+        </div>
+    </div>
+    <table class="table "> 
+        <thead>
+            <tr>
+                <th>Documento</th>               
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Categoria</th>
+                <th>Asistencia</th>
+                <th>Comandos</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="invitado in invitadosRecords|filter:nameInv|orderBy:tipoOrden" ng-init="tipoOrden = 'name'">
+                <td id="{{$index}}-documento"><a ui-sref="invitadoDetail({invitadoId: invitado.id})">{{invitado.documento}}</a></td>
+                <td id="{{$index}}-name">{{invitado.name}}</td>
+                <td id="{{$index}}-correo">{{invitado.correo}}</td>
+                <td id="{{$index}}-categoria">{{invitado.categoria}}</td>
+                <td id="{{$index}}-asistencia">{{invitado.asistencia}}</td>
+                <td id="{{$index}}-actions">
+                    <a class="btn btn-danger btn-sm" ui-sref="invitadoDelete({invitadoId: invitado.id})"><span class="glyphicon glyphicon-trash"></span></a> 
+                    <a class="btn btn-default btn-sm" ui-sref="invitadoUpdate({invitadoId: invitado.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="btn-group" role="group" style="margin-top:20px;">
+     <a class="botones" ui-sref="calificacionesCreate" ><span class="glyphicon glyphicon-plus"></span> Agregar calificación</a>  
+    </div>
+    <div ui-view="modView"></div>
+    <br />
+    <div ng-repeat="calificacio in calificacionesRecords">
+        <div class="panel panel-default">            
+            <div class="panel-body">        
+                <a ng-show="imgCalificacion(calificacio.calificacionNum)"></a>
+                <dl>
+                    <dt>Calificación </dt>              
+                    <dd><img class="img-responsive" ng-src='{{imgCalif}}'  style =" width:5%; " align="left"/></dd>
+                    <hr>
+                    <dt>Comentario </dt>
+                    <dd><div class="well">{{calificacio.comentario}}</div></dd> 
+                </dl>
+                <div class="btn-group" role="group"  >
+                    <a  ui-sref="calificacionesUpdate({cafId: calificacio.id})" id="{{$index}}-edit-btn"  type="button" class="btn btn-warning btn-sm" style=" border: none;background: #F48FB1;color:#f2f2f2;"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a  ng-click="ctrl.deleteCalificacion(calificacio)" id="{{$index}}-delete-btn" type="button" class="btn btn-danger btn-sm sweet-2" style=" border: none;"><span class="glyphicon glyphicon-trash"></span></a>                    
+                </div>
+            </div>        
+        </div>   
+    </div>
+</div>
