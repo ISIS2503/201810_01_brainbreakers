@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="resources/css/style.css">
+<div class="container">
+        <div class="alert alert-danger alert-dismissible" ng-repeat="alert in alerts" type="{{alert.type}}"  role="alert">
+            <button ng-click="closeAlert({index})" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> {{alert.msg}}
+          </div>
+        </div>
+<div class="panel panel-danger" >
+            <center>
+                <img align=center src="resources/icons/header.png" >
+                <h2>Lista de bodas</h2>
+            </center>
+       <div class="panel-body">                
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom: 2%">
+            <a class="btn btn-info" ui-sref="bodaCreate" style="background: #F48FB1;border: none;" ng-show="isAuthenticated() && currentUser.rol == 'admin' "><span class="glyphicon glyphicon-plus-sign"></span> Agregar nueva boda</a>
+            <form   ng-submit="" name="busqueda" style="margin-right: 5%; width: 30%;" >
+                <div class="input-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Buscar boda (ej: Mafelipe)" required ng-model="nameBoda" style="width: 250px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+           <table class="table "> 
+           <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Religion</th>
+                <th>Tema</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr ng-repeat="boda in bodasRecords|filter:nameBoda">
+                <td id="{{$index}}-name"><a ui-sref="bodaDetail({bodaId: boda.id})">{{ boda.name}}</a></td>
+                <td id="{{$index}}-fecha">{{ boda.fecha.toString().substring(0,10)}}</td>
+                <td id="{{$index}}-reigion">{{ boda.religion}}</td>
+                <td id="{{$index}}-tema">{{ boda.tema}}</td>
+                <td id="{{$index}}-actions">
+                    <a class="btn btn-danger btn-sm" ui-sref="bodaDelete({bodaId: boda.id})"><span class="glyphicon glyphicon-trash"></span></a>   
+                    <a class="btn btn-default btn-sm" ui-sref="bodaUpdate({bodaId: boda.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+           </tr>
+        </tbody>
+    </table>     
+   </div>   
+</div>

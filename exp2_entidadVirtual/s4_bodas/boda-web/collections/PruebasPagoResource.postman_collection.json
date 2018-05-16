@@ -1,0 +1,168 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasPagoResource",
+		"_postman_id": "9537bace-09eb-0663-3755-9e451d76b222",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get de los pagos de una tarjeta de credito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get de un pago de una tarjeta de credito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post de un pago hecho con una tarjeta de credito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\": \"2017-09-29T00:00:00-05:00\",\n    \"montoTotal\": 55000,\n    \"nombrePago\": \"Pago por nada\",\n    \"correoPareja\": \"fmarsland0@artisteer.com\",\n    \"numeroTarjeta\": 4445556667778889\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post fallido: Un pago debe tener un monto de mas de 0 pesos.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code==412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\": \"2017-09-29T00:00:00-05:00\",\n    \"montoTotal\": 0,\n    \"nombrePago\": \"Pago por todo\",\n    \"correoPareja\": \"fmarsland0@artisteer.com\",\n    \"tarjetaId\": 4445556667778889\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put de un Pago exitoso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\": \"2017-09-29T00:00:00-05:00\",\n    \"montoTotal\": 5500000,\n    \"nombrePago\": \"Pago por transporte actualizado\",\n    \"correoPareja\": \"fmarsland0@artisteer.com\",\n    \"numeroTarjeta\": 4445556667778889\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put fallido: El monto del pago debe ser mayor que 0",
+			"request": {
+				"url": "http://localhost:8080/boda-web/api/parejas/fmarsland0@artisteer.com/tarjetasCredito/4445556667778889/pagos/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2017-09-29T00:00:00-05:00\",\r\n    \"montoTotal\": 0,\r\n    \"nombrePago\": \"Pago por transporte actualizado2\",\r\n    \"correoPareja\": \"fmarsland0@artisteer.com\",\r\n    \"numeroTarjeta\": 4445556667778889\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

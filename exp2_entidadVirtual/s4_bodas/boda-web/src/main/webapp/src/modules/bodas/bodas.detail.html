@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="resources/css/style.css">
+<ul id="navegador">
+    <li><a ui-sref="regalosList({bodaId: currentBoda.id})"><img id="iconos" src="resources/icons/regalosBN.PNG"> Regalos</a></li>
+    <li><a ui-sref="invitadosList({bodaId: currentBoda.id})"><img id="iconos" src="resources/icons/invitadosBN.PNG">Invitados</a></li>
+    <li><a ui-sref="bodasOpcionesList({bodaId: currentBoda.id})"><img id="iconos" src="resources/icons/servicioBN.PNG">Servicios contratados</a></li>
+</ul>
+<div class="panel panel-default">
+    <div id="headPanel" class="panel-heading">
+        <center>
+            <img align=center src="resources/icons/header.png" >
+            <h2>{{currentBoda.name}}</h2>
+        </center>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-4">
+            <div class="thumb" >
+                <img id="parejaImg" class="img-responsive" ng-src="{{currentBoda.image}}"/>
+            </div>
+        </div>
+        <div class="col-md-8">   
+            <h2 class="HC1">Nos casamos el</h2>
+            <p class="fecha"> {{currentBoda.fecha| date:'dd'}} de {{currentBoda.fecha| date:'MMMM'}} del {{currentBoda.fecha| date:'yyyy'}} </p>
+            <br>
+            <p class="fecha"> Solo faltan : <p id="demo" class="fecha"></p>
+
+            <p>Se acerca el gran día. ¿Qué nos falta?</p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                    <span class="sr-only">20% Complete</span>
+                </div>
+            </div>
+            <div id="next_button" align="right">
+                <button class="botones" class="btn btn-primary" ui-sref="bodaUpdate({bodaId: currentBoda.id})"><span class="glyphicon glyphicon-edit"></span>   
+            </div>
+            <div class="col-md-8" >
+                <h5><b>Tema: </b>{{currentBoda.tema}}</h5>
+                <h5><b>Tipo de Boda: </b>{{currentBoda.tipoBoda}}</h5>
+                <h5><b>Pareja: </b>{{currentBoda.pareja.correoElec}}</h5>
+            </div>
+        </div>
+    </div>                   
+</div>
+
+
+<div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-12">
+        <div ui-view="childrenView"></div>
+    </div>
+</div>
+

@@ -1,0 +1,114 @@
+<!---css-form-->
+    <form class="well form-horizontal css-form" ng-submit="createPareja()" name="pareja" id="registro_form" >
+       <div> <h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1; text-align: center;"  ng-if="!edit">Crear Pareja</h1>
+         <h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1; text-align: center;"  ng-if="edit">Editar Pareja</h1></div>
+        <fieldset>
+            <!-- Text input-->
+            <div class="form-group" ng-class="{'has-success': pareja.email.$valid,'has-error' : !pareja.email.$valid && pareja.email.$touched}" >
+                <label class="col-md-4 control-label">E-Mail</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="E-Mail " class="form-control" required ng-model="data.correoElec" type="email">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group" ng-class="{'has-success': pareja.contrasenia.$valid,'has-error' : !pareja.contrasenia.$valid && pareja.contrasenia.$touched}" >
+                <label class="col-md-4 control-label">Contraseña</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="contrasenia" placeholder="Contraseña de la cuenta" class="form-control" required ng-model="data.contrasenia" type="password">
+                    </div>
+                </div>
+            </div>
+             <div class="form-group" ng-class="{'has-success': pareja.contraseniaR.$touched &&repCo == data.contrasenia ,'has-error':!pareja.contrasenia.$valid && pareja.contraseniaR.$touched}" >
+                <label class="col-md-4 control-label">Repetir Contraseña</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="contraseniaR" placeholder="Repetir contraseña de la cuenta" class="form-control" required ng-model="repCo" ng-match="data.contrasenia"  type="password">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group"  ng-class="{'has-success': pareja.nombreInd1.$valid,'has-error' : !pareja.nombreInd1.$valid && pareja.nombreInd1.$touched}" >
+                <label class="col-md-4 control-label">Nombre 1</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="nombreInd1" placeholder="Nombre 1" class="form-control" required ng-model="data.nombreInd1" type="text">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group"  ng-class="{'has-success': pareja.nombreInd2.$valid,'has-error' : !pareja.nombreInd2.$valid && pareja.nombreInd2.$touched}">
+                <label class="col-md-4 control-label" >Nombre 2</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="nombreInd2" placeholder="Nombre 2" class="form-control" required ng-model="data.nombreInd2" type="text">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group" ng-class="{'has-success': pareja.nombreAbreviado.$valid && pareja.nombreAbreviado.$touched,'has-error' : !pareja.nombreAbreviado.$valid && pareja.nombreAbreviado.$touched}">
+                <label class="col-md-4 control-label" >Nombre abreviado</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="nombreAbreviado" placeholder="Nombre Adv" class="form-control" ng-model="data.nombreAbreviado" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group"  ng-class="{'has-feedback':  pareja.direccion.$valid,'has-success': pareja.direccion.$valid,'has-error' : !pareja.direccion.$valid && pareja.direccion.$touched}">
+                <label class="col-md-4 control-label">Dirección</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="direccion" placeholder="Dirección" class="form-control" required ng-model="data.direccion"  type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group"  ng-class="{'has-success': pareja.telefono.$valid,'has-error' : !pareja.telefono.$valid && pareja.telefono.$touched}">
+                <label class="col-md-4 control-label">Telefono #</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="telefono" placeholder="(845)555-1212" class="form-control" required ng-model="data.telefono" max="9999999999" type="number">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group" >
+                <div class="col-md-12 inputGroupContainer">  
+                    <label class="col-md-4 control-label"></label>
+                    <div class="input-group">
+                            <div class="alert alert-warning" ng-if="!pareja.$valid" >
+                                <strong>Warning!</strong><p>Todos los campos son requeridos*</p>
+                            </div> 
+                            <div class="alert alert-success"   ng-show="pareja.$valid"  ng-if="!edit">Correcto! <i class="glyphicon glyphicon-thumbs-up"></i></div>
+                 </div>
+                </div>
+            </div> 
+
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4 ">
+                    
+                    <button  class="botones"  ui-sref="login" ng-show="isAuthenticated() && currentUser.rol === 'parejas'" ><span class="glyphicon glyphicon-arrow-left"></span> Cancelar</button>
+                    <button  class="botones"  ui-sref="parejasList" ng-show="isAuthenticated() && currentUser.rol === 'admin' "><span class="glyphicon glyphicon-arrow-left"></span> Cancelar</button>
+                    <input ng-show="pareja.$valid" ng-if="!edit" type="submit" value="Crear" class="btn btn-success"/>
+                    <input ng-show="edit&&isAuthenticated() && hasPermissions()" ng-if="edit" type="submit"  value="Editar" class="btn btn-warning"/>
+                    
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+    

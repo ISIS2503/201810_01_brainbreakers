@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title"><b>Lista de Pagos</b></h3></div>
+        <div class="panel-body">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>Descripcion </th>
+                    <th>Fecha </th>
+                    <th>Monto Total </th>
+                    <th>Detalles </th>
+                    <th ng-show ="isAuthenticated() && currentUser.rol == 'admin'">Acciones </th>
+                </tr>
+                </thead>
+                  <tbody>
+                      <tr ng-repeat="pago in pagosRecords">
+                      <td id="{{$index}}-nombrePago">{{pago.nombrePago}}</td>
+                      <td id="{{$index}}-fecha">{{pago.fecha | date:'dd-MM-yyyy'}}</td>
+                      <td id="{{$index}}-montoTotal">{{pago.montoTotal}}</td>
+                      <td id="{{$index}}-detail"><a class = "btn boton-detalle" style="background: #F48FB1" ui-sref="pagosDetail({pagoId: pago.id})"><span class="glyphicon glyphicon-eye-open"></span>Ver detalles</a></td>
+                      <td><a class="btn btn-default btn-sm" ui-sref="pagosUpdate({pagoId: pago.id})" ng-show ="isAuthenticated() && currentUser.rol == 'admin'"> <span class="glyphicon glyphicon-pencil"></span></a><td>
+                      </tr>
+                  </tbody>
+            </table>
+        </div>
+</div>

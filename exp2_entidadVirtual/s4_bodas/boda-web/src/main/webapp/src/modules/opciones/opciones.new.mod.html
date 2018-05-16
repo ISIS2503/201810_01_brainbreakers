@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div>
+            <div class="panel-heading"><h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1;" ng-if="!edit" id="opcionCreate">Crear nueva opcion</h1>
+                <h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1;" ng-if="edit" id="editOpcion">Editar Opcion</h1></div>
+            <div class="panel-body">
+                <form ng-submit="createOpcionServicio()" name="opcion">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="opcionDescripcion" class="col-sm-2">Descripcion:</label>
+                            <input id="opcionDescripcion" required ng-model="opcionDescripcion" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="opcionCosto" class="col-sm-2">Costo:</label>
+                            <input id="opcionCosto" required ng-model="opcionCosto" class="col-sm-6"/>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="opcionDias" class="col-sm-2">Dias:</label>
+                            <input id="opcionDias" required ng-model="opcionDias" class="col-sm-6"/>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="opcionImage" class="col-sm-2">Image:</label>
+                            <input id="opcionImage" required ng-model="opcionImage" class="col-sm-6"/>
+                        </div>
+                    </div>
+                   <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!opcion.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>Todos los campos son requeridos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="opcion.$valid" type="submit" value="Crear" class="botones"/>
+                            <a class="botones" ui-sref="opcionesList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

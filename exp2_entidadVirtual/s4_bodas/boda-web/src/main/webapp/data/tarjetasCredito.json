@@ -1,0 +1,25 @@
+[{
+  "id": 1,
+  "name": "Banco uniandino",
+  "fechaVen": "12-01-2011",
+  "numero": 1234567890123456,
+  "numDeSeg": 7789
+}, {
+  "id": 2,
+  "name": "Banco despues",
+  "fechaVen": "5-01-2022",
+  "numero": 4440001115556987,
+  "numDeSeg": 456
+}, {
+  "id": 3,
+  "name": "El quitador",
+  "fechaVen": "5-05-2066",
+  "numero": 4567891234567894,
+  "numDeSeg": 111
+}, {
+  "id": 4,
+  "name": "Don dineral",
+  "fechaVen": "3-09-2015",
+  "numero": 7777778889996631,
+  "numDeSeg": 4446
+}]

@@ -1,0 +1,29 @@
+{
+  "name": "boda",
+  "license": "MIT",
+  "version": "1.0.0",
+  "main": "src/main/webapp/index.html",
+  "dependencies": {
+    "angular-ui-router": "~1.0.10",
+     "angular-bootstrap": "^0.13.4",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "sweetalert2":"6.11.2",
+    
+    "angular": "angularjs#^1.6.4", 
+    "angular": "^1.5.0",
+    "google-maps-utility-library-v3-markerwithlabel": "1.1.10",
+    "google-maps-utility-library-v3-infobox": "^1.1.14",
+    "google-maps-utility-library-v3-keydragzoom": "^2.0.9",
+    "angular-google-maps": "^2.0.5"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
