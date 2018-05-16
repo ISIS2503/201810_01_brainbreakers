@@ -8,6 +8,7 @@
 void setup();
 void loop();
 void receiveData();
+void silenciarAlerta (String alerta);
 void processData();
 boolean compareKey(String key);
 void processCommand(String* result, String command);
@@ -17,6 +18,15 @@ void deletePassword(int index);
 void deleteAllPasswords();
 void setColor(int redValue, int greenValue, int blueValue);
 int id =  1;
+    
+    //lleva el tiempo del healthCheck
+    int healthTime = 0;
+    
+    //booleanos para desactivar alarmas
+    boolean alert1 = true;
+    boolean alert2 = true;
+    boolean alert3 = true;
+    boolean alert4 = true;
     
   #define SIZE_BUFFER_DATA       100
     boolean     stringComplete = false;
@@ -177,11 +187,28 @@ int id =  1;
   
   void loop()
   {
+    
+    //parte de health check
+    
+    healthTime ++;
+    
+    if (healthTime > 200)
+    {
+     Serial.println("estoy_bien");
+     healthTime = 0;
+    }
+    
+    
+    
      val = digitalRead(inputPin);  // read input value
   
     if (val == HIGH) {            // check if the input is HIGH
       digitalWrite(ledPin, HIGH);  // turn LED ON
-        Serial.println("alerta4");
+        
+        if (alert4)
+        {
+          Serial.println("alerta4");
+        }      
         tone(speakerPin, 135);
         delay(500);           
         noTone(speakerPin);
@@ -221,7 +248,12 @@ int id =  1;
       if(open && (millis()-currTime)>=15000)
        {
             setColor(0, 255, 255);
-            Serial.println("alerta2");
+            
+            if (alert2)
+            {
+              Serial.println("alerta2");
+            } 
+            
             tone(speakerPin, 135);
             delay(200);           
             noTone(speakerPin);
@@ -255,7 +287,10 @@ int id =  1;
     if(attempts>=maxAttempts) {
       currentKey = "";
       attempts = 0;
-      Serial.println("alerta3");
+      if (alert3)
+       {
+          Serial.println("alerta3");
+       } 
        setColor(0, 255, 255);
       delay(LOCK_TIME);
        setColor(255,255, 0);
@@ -279,7 +314,11 @@ int id =  1;
           tone(speakerPin, 135);
           delay(1000);           
           noTone(speakerPin);
-          Serial.println("alerta2");
+          if (alert2)
+          {
+            Serial.println("alerta2");
+          } 
+         
         }
       }else{
         setColor(255, 255, 0);
@@ -297,7 +336,11 @@ int id =  1;
     //Measured value comparison with min voltage required
     if(batteryCharge<=MIN_VOLTAGE) {
       digitalWrite(BATTERY_LED,HIGH);
-      Serial.println("alerta1");
+      if (alert1)
+      {
+          Serial.println("alerta1");
+      } 
+     
       tone(speakerPin, 135);
       delay(400);           
       noTone(speakerPin);
@@ -305,6 +348,8 @@ int id =  1;
     else {
       digitalWrite(BATTERY_LED,LOW);
     }
+    
+    
     
   
     receiveData();
@@ -325,6 +370,26 @@ void receiveData() {
       inputString.toCharArray(bufferData, SIZE_BUFFER_DATA);
       stringComplete = true;
     }
+  }
+}
+
+void silenciarAlerta (String alerta)
+{
+  if (alerta == "alerta1")
+  {
+    alert1 = false;
+  }
+  else if (alerta == "alerta2")
+  {
+    alert2 = false;
+  }
+  else if (alerta == "alerta3")
+  {
+    alert3 = false;
+  }
+  else if (alerta == "alerta4")
+  {
+    alert4 = false;
   }
 }
    

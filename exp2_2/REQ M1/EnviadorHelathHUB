@@ -1,0 +1,69 @@
+[
+    {
+        "id": "9d32b7e.b4cd148",
+        "type": "inject",
+        "z": "312b65d4.34c50a",
+        "name": "Health Chech Cerradura",
+        "topic": "healthCerradura1",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 207,
+        "y": 139,
+        "wires": [
+            [
+                "ee6d29b0.45d798",
+                "d6ef7e61.e5359"
+            ]
+        ]
+    },
+    {
+        "id": "ee6d29b0.45d798",
+        "type": "mqtt out",
+        "z": "312b65d4.34c50a",
+        "name": "",
+        "topic": "healthHUB1",
+        "qos": "",
+        "retain": "",
+        "broker": "26096c87.076114",
+        "x": 476,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "d6ef7e61.e5359",
+        "type": "debug",
+        "z": "312b65d4.34c50a",
+        "name": "EnvíoAlMQTT",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 475,
+        "y": 201,
+        "wires": []
+    },
+    {
+        "id": "26096c87.076114",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "172.24.42.29",
+        "port": "8083",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]

@@ -6,8 +6,14 @@
   //ID del wiring
     int id =  1;
     
-    lleva el tiempo del healthCheck
+    //lleva el tiempo del healthCheck
     int healthTime = 0;
+    
+    //booleanos para desactivar alarmas
+    boolean alert1 = true;
+    boolean alert2 = true;
+    boolean alert3 = true;
+    boolean alert4 = true;
     
   #define SIZE_BUFFER_DATA       100
     boolean     stringComplete = false;
@@ -185,7 +191,11 @@
   
     if (val == HIGH) {            // check if the input is HIGH
       digitalWrite(ledPin, HIGH);  // turn LED ON
-        Serial.println("alerta4");
+        
+        if (alert4)
+        {
+          Serial.println("alerta4");
+        }      
         tone(speakerPin, 135);
         delay(500);           
         noTone(speakerPin);
@@ -225,7 +235,12 @@
       if(open && (millis()-currTime)>=15000)
        {
             setColor(0, 255, 255);
-            Serial.println("alerta2");
+            
+            if (alert2)
+            {
+              Serial.println("alerta2");
+            } 
+            
             tone(speakerPin, 135);
             delay(200);           
             noTone(speakerPin);
@@ -259,7 +274,10 @@
     if(attempts>=maxAttempts) {
       currentKey = "";
       attempts = 0;
-      Serial.println("alerta3");
+      if (alert3)
+       {
+          Serial.println("alerta3");
+       } 
        setColor(0, 255, 255);
       delay(LOCK_TIME);
        setColor(255,255, 0);
@@ -283,7 +301,11 @@
           tone(speakerPin, 135);
           delay(1000);           
           noTone(speakerPin);
-          Serial.println("alerta2");
+          if (alert2)
+          {
+            Serial.println("alerta2");
+          } 
+         
         }
       }else{
         setColor(255, 255, 0);
@@ -301,7 +323,11 @@
     //Measured value comparison with min voltage required
     if(batteryCharge<=MIN_VOLTAGE) {
       digitalWrite(BATTERY_LED,HIGH);
-      Serial.println("alerta1");
+      if (alert1)
+      {
+          Serial.println("alerta1");
+      } 
+     
       tone(speakerPin, 135);
       delay(400);           
       noTone(speakerPin);
@@ -333,6 +359,26 @@ void receiveData() {
     }
   }
 }
+
+void silenciarAlerta (String alerta)
+{
+  if (alerta == "alerta1")
+  {
+    alert1 = false;
+  }
+  else if (alerta == "alerta2")
+  {
+    alert2 = false;
+  }
+  else if (alerta == "alerta3")
+  {
+    alert3 = false;
+  }
+  else if (alerta == "alerta4")
+  {
+    alert4 = false;
+  }
+}
    
   void processData() {
     if (stringComplete) {
@@ -341,9 +387,11 @@ void receiveData() {
       int index, val;
       
       processCommand(arreglo, inputString);
-      val = arreglo[1].toInt();
-      index = arreglo[2].toInt();
-      
+      if ( arreglo[0] != "silenciarAlarma")
+      {
+        val = arreglo[1].toInt();
+        index = arreglo[2].toInt();
+      }
       
       
       
@@ -363,6 +411,12 @@ void receiveData() {
       {
         deleteAllPasswords();
       }
+      else if ( arreglo[0] == "silenciarAlarma")
+      {
+        silenciarAlerta(arreglo[1]);
+      }
+      
+      
       
       
       

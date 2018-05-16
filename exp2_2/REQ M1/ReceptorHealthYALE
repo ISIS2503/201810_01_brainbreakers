@@ -1,0 +1,171 @@
+[
+    {
+        "id": "68628ee.6408f7",
+        "type": "mqtt in",
+        "z": "a95abf8d.ae589",
+        "name": "ReceptorHealtsChecks",
+        "topic": "healthHUB1",
+        "qos": "2",
+        "broker": "d0270325.c744f",
+        "x": 179,
+        "y": 306,
+        "wires": [
+            [
+                "df51f589.a3ac18"
+            ]
+        ]
+    },
+    {
+        "id": "cc8bb606.338628",
+        "type": "inject",
+        "z": "a95abf8d.ae589",
+        "name": "Verificador",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "repeat": "20",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 171,
+        "y": 215,
+        "wires": [
+            [
+                "df51f589.a3ac18"
+            ]
+        ]
+    },
+    {
+        "id": "17be86a4.672f99",
+        "type": "switch",
+        "z": "a95abf8d.ae589",
+        "name": "",
+        "property": "count",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 761,
+        "y": 410,
+        "wires": [
+            [
+                "22191df.55e6fe2"
+            ]
+        ]
+    },
+    {
+        "id": "df51f589.a3ac18",
+        "type": "timed-counter",
+        "z": "a95abf8d.ae589",
+        "name": "ContadorMensajes",
+        "timelimit": "20000",
+        "withhold": true,
+        "fixedtimeout": true,
+        "x": 522.5,
+        "y": 257,
+        "wires": [
+            [
+                "37f9e7e3.d2ba78",
+                "17be86a4.672f99"
+            ]
+        ]
+    },
+    {
+        "id": "37f9e7e3.d2ba78",
+        "type": "debug",
+        "z": "a95abf8d.ae589",
+        "name": "#Mensajes",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "count",
+        "x": 776,
+        "y": 190,
+        "wires": []
+    },
+    {
+        "id": "22191df.55e6fe2",
+        "type": "function",
+        "z": "a95abf8d.ae589",
+        "name": "Correo",
+        "func": "msg.payload = \"HUB FUERA DE LINEA\"\nmsg.topic = \"Alerta Hub Yale\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 909,
+        "y": 410,
+        "wires": [
+            [
+                "acad91.cc0d127",
+                "98cb9ec4.d5bfa"
+            ]
+        ]
+    },
+    {
+        "id": "acad91.cc0d127",
+        "type": "debug",
+        "z": "a95abf8d.ae589",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1109,
+        "y": 485,
+        "wires": []
+    },
+    {
+        "id": "98cb9ec4.d5bfa",
+        "type": "e-mail",
+        "z": "a95abf8d.ae589",
+        "server": "smtp.office365.com",
+        "port": "587",
+        "secure": false,
+        "name": "ms.osorio@uniandes.edu.co",
+        "dname": "Send Notification",
+        "x": 1130,
+        "y": 355,
+        "wires": []
+    },
+    {
+        "id": "d0270325.c744f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mqtt-Esteban",
+        "broker": "172.24.42.29",
+        "port": "8083",
+        "tls": "589b8d3d.a31d24",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "589b8d3d.a31d24",
+        "type": "tls-config",
+        "z": "",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "/home/SIS/ms.osorio/ssl/m2mqtt_ca.crt",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "verifyservercert": false
+    }
+]
