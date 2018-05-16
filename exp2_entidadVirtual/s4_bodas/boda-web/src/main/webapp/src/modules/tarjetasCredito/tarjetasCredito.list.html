@@ -1,0 +1,44 @@
+<div class="panel panel-default" style="color:#0000FF">
+    <div class="panel-heading"><h3 class="panel-title"><b>Lista de Tarjetas De Credito</b></h3></div>
+    <div class="panel-body">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="botones" ui-sref="tarjetasCreate" ng-show ="isAuthenticated() && currentUser.rol == 'pareja'"><span class="glyphicon glyphicon-plus-sign"></span> Registrar una Tarjeta Nueva</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Numero De Seguridad</th>
+                    <th>Fecha De Vencimiento</th>
+                    <th>Nombre del Banco</th>
+                    <th>Acciones</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat= "tarjeta in tarjetasCreditoRecords">
+                    <td id="{{$index}}-numero">{{tarjeta.numero}}</td>
+                    <td id="{{$index}}-numDeSeg">{{tarjeta.numDeSeg}}</td>
+                    <td id="{{$index}}-fechaVen">{{tarjeta.fechaVen.toString().substring(0, 10)}}</td>
+                    <td id="{{$index}}-nombreBanco">{{tarjeta.nombreBanco}}</td>
+                    <td id="{{$index}}-actions" >
+                        
+                        <a class="btn btn-default btn-sm" ui-sref="tarjetasUpdate({parejaId: tarjeta.pareja.correoElec, tarjetaId: tarjeta.numero})" ng-show ="isAuthenticated() && currentUser.rol == 'admin'"> <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="tarjetasDelete({parejaId: currentUser.username, tarjetaId: tarjeta.numero})"ng-show ="isAuthenticated() && currentUser.rol == 'pareja'"> <span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="tarjetasDelete({parejaId: tarjeta.pareja.correoElec, tarjetaId: tarjeta.numero})"ng-show ="isAuthenticated() && currentUser.rol == 'admin'"> <span class="glyphicon glyphicon-trash"></span></a>
+                    
+                    </td>
+                    <td><a class="btn boton-detalle" style="background: #F48FB1" ui-sref="tarjetasDetail({tarjetaId: tarjeta.numero})"><span class="glyphicon glyphicon-eye-open"></span>Ver Detalles</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <dl>
+            <dd><a class = "btn btn-default" ui-sref="parejasList" style="background: #F48FB1"   ng-show="isAuthenticated() && currentUser.rol == 'admin'" ><span class="glyphicon glyphicon-arrow-left"></span> Volver a Parejas</a></dd>
+            <dd><a class = "btn btn-default" ui-sref="parejasDetail({parejaId:currentUser.username})" style="background: #F48FB1"   ng-show="isAuthenticated() && currentUser.rol == 'pareja'" ><span class="glyphicon glyphicon-arrow-left"></span> Volver a Informacion</a></dd>
+        </dl>      
+    </div>
+    <div ui-view="childrenView"></div>
+</div>

@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <div id="headPanel" class="panel-heading">
+        <h3 id="descripcion" class="panel-title"><b>Tarjeta N° {{currentTarjeta.numero}}</b>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table ">
+            <tbody>
+            <dl>
+                <hr>
+                <font color=black><dt style="color:#000000">Numero de Seguridad </dt></font>
+                <font color=black><dd style="color:#000000">{{currentTarjeta.numDeSeg}}</dd></font>
+                <hr>
+                <font color=black><dt style="color:#000000">Fecha de Vencimiento </dt></font>
+                <font color=black><dd style="color:#000000">{{currentTarjeta.fechaVen | date:'dd-MM-yyyy'}} </dd></font>
+                <hr>
+                <font color=black><dt style="color:#000000">Nombre del Banco </dt></font>
+                <font color=black><dd style="color:#000000">{{currentTarjeta.nombreBanco}} </dd></font>
+                <hr>
+                <dd><a class = "btn boton-detalle" style="background: #F48FB1" ui-sref="pagosList"><span class="glyphicon glyphicon-eye-open"></span>Ver Pagos </a></dd>
+                <div class="panel-body">
+                    <div class="row">
+                        <div ui-view="childrenView"></div>
+                    </div>
+                </div>
+                <dd><a class = "btn btn-danger" ui-sref="tarjetasList">Cerrar </a></dd>
+            </dl>
+            </tbody>
+        </table>
+    </div>
+</div>

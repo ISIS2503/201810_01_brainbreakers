@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div>
+            <div class="panel-heading"><h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1;"  ng-if="!edit" id="proveedorCreate">Crear nuevo proveedor</h1>
+                <h1 style="font-family: 'Quicksand', sans-serif;color:#F48FB1;"  ng-if="edit" id="editProveedor">Editar proveedor</h1></div>
+            <div class="panel-body">
+                <form ng-submit="createProveedor()" name="proveedor">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="proveedorName" class="col-sm-2">Nombre del proveedor:</label>
+                            <input id="proveedorName" required ng-model="proveedorName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="proveedorEspecialidad" class="col-sm-2">Especialidad del proveedor:</label>
+                            <input id="proveedorEspecialidad" required ng-model="proveedorEspecialidad" class="col-sm-6"/>
+                        </div>
+                    </div>
+                   <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!proveedor.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>Todos los campos son requeridos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="proveedor.$valid" type="submit" value="Crear" class="botones"/>
+                            <a class="botones" ui-sref="bodasList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

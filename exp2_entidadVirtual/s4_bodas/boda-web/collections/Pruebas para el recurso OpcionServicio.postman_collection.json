@@ -1,0 +1,307 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas para el recurso OpcionServicio",
+		"_postman_id": "c9b41cb4-abcc-0c64-0c76-655d714299ad",
+		"description": "Pruebas para el recurso OpcionServicio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar todas las opciones servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar una opcion servicio ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/12",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Consultar una opcion servicio con un id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "Error al consultar una opcion servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/55",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Error al consultar una opcion de servicio porque el id no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una nueva opcion de servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \r\n        \"costo\": 45,\r\n        \"descripcion\": \"descripcion4\",\r\n        \"diasDisponibles\": \"LunesYMArtes\",\r\n        \"id\": 140\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Error al crear una opcion de servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \r\n        \"costo\": 14,\r\n        \"descripcion\": \"descripcion4\",\r\n        \"diasDisponibles\": \"LunesYMArtes\",\r\n        \"id\": 12\r\n}"
+				},
+				"description": "Error al crear una opcion de servicio porque el id ya existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Error al crear opción de servicio por costo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \r\n        \"costo\": -4,\r\n        \"descripcion\": \"descripcion4\",\r\n        \"diasDisponibles\": \"LunesYMArtes\",\r\n        \"id\": 12\r\n}"
+				},
+				"description": "No se puede crear la opción de servicio porque el costo no  puede ser negativo"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una opcion servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/13",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"opcionServicioDetailDTO\",\n        \"costo\": 12,\n        \"descripcion\": \"descripcion11\",\n        \"diasDisponibles\": \"LunesMartesMiercolesJuevesViernes\",\n        \"id\": 14\n    }"
+				},
+				"description": "Actualiza una opcion servicio con un id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "Error al actualizar la opcion de servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/40",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"costo\": 12,\n        \"descripcion\": \"descripcion1\",\n        \"diasDisponibles\": \"LunesMartesMiercoles\",\n        \"id\": 40\n\t\n}"
+				},
+				"description": "Error al actualizar la opcion de servicio porque el id no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Error a actualizar opción por costo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/12",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"costo\": -3,\n        \"descripcion\": \"descripcion4\",\n        \"diasDisponibles\": \"LunesYMArtes\",\n        \"id\": 12\n}"
+				},
+				"description": "No se realiza la actualización porque el costo no puede ser negativo"
+			},
+			"response": []
+		},
+		{
+			"name": "Elimina una opcion de servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"]=responseCode.code===204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/14",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Elimina una opcion de servicio con un id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "Error al eliminar una opcion servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": " http://localhost:8080/boda-web/api/proveedores/100/opcionServicios/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Error al eliminar la opcion de servicio porque el id no existe"
+			},
+			"response": []
+		}
+	]
+}

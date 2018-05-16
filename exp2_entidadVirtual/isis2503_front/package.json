@@ -1,0 +1,14 @@
+{
+    "name": "isis2503_front",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "e.reyesm",
+    "contributors": [],
+    "dependencies": {}
+}
