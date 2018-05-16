@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function (ng) {
     var app = angular.module('mainApp', ['ui.router','loginModule'])
 
@@ -81,3 +82,8 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     
+=======
+(function(){var mainApp= angular.module(
+            'mainApp',[]);
+})();
+>>>>>>> b2deba4d1957da663c7b9f348d0c4686b1daccb9
