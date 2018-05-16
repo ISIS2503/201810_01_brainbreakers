@@ -1,0 +1,7 @@
+<div class="center-block well text-center">
+    <h1>¿Esta seguro de que desea desvincular de su cuenta esta Tarjeta de Credito?</h1>
+    <button id="confirm-delete" ng-click="deleteTarjetaCredito()" ui-sref="tarjetasList({parejaId: currentUser.username})" ng-show ="isAuthenticated() && currentUser.rol == 'pareja'" class="btn btn-danger">Sí, desvincular</button>
+    <button id="confirm-delete" ng-click="deleteTarjetaCredito()" ui-sref="parejasList" ng-show ="isAuthenticated() && currentUser.rol == 'admin'"ng-show ="isAuthenticated() && currentUser.rol == 'admin'" class="btn btn-danger">Sí, desvincular</button>
+    <a id="cancel-delete" ui-sref="tarjetasList({parejaId: currentUser.username})" ng-show ="isAuthenticated() && currentUser.rol == 'pareja'" class="btn btn-info">Cancelar</a>
+    <a id="cancel-delete" ui-sref="parejasList" ng-show ="isAuthenticated() && currentUser.rol == 'admin'" class="btn btn-info">Cancelar</a>
+</div>

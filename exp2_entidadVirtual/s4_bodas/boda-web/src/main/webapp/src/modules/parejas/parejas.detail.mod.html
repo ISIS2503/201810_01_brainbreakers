@@ -1,0 +1,30 @@
+<div class="panel">
+    <div class="container-fluid">
+        <h4 ng-show="isAuthenticated() && currentUser.rol === 'admin' "> Detalles de la Pareja </h4>
+        <h3 ng-show="isAuthenticated() && currentUser.rol === 'pareja' "> Tu información </h3>
+        
+        <ul class="list-group">
+            <li class="list-group-item"> <strong>Email: </strong> {{currentPareja.correoElec}}</li>
+            <li class="list-group-item">Nombre 1: {{currentPareja.nombreInd1}}</li>
+            <li class="list-group-item">Nombre 2: {{currentPareja.nombreInd2}}</li>
+            <li class="list-group-item">Dirección: {{currentPareja.direccion}}</li>
+            <li class="list-group-item">Telefono: {{currentPareja.telefono}}</li>
+        </ul>
+        <div class="btn-group">
+            
+            <a class="btn btn-info" style="background: #F48FB1; border-color: #ffffff;" ui-sref="tarjetasList({parejaId: currentPareja.correoElec})"><span class="glyphicon glyphicon-eye-open"></span><strong> Ver Tarjetas De Credito</strong></a>
+            <a class="btn btn-info" style="background: #F48FB1;border-color: #ffffff;" ui-sref="bodaCreate" ><span class="glyphicon glyphicon-plus"></span> <b>Agregar boda</b></a>
+          
+            <!-- Single button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-info" style="background: #F48FB1;border-color: #ffffff;;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <b> Ver bodas</b> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                 <li ng-repeat="bodas in currentPareja.bodas"><a ui-sref="bodaDetail({bodaId: bodas.id})">{{bodas.name}}</a> </li>   
+                  <li ng-show="currentPareja.bodas.length ===0"> <a>No tiene bodas</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>

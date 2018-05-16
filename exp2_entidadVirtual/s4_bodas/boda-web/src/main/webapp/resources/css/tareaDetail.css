@@ -1,0 +1,14 @@
+
+.margin-top{
+    padding-top: 30px;
+}
+
+
+#nombreTarea, #headPanel {
+   
+   text-align: left;
+   background: #ffdffc;
+   font-size: xx-large;
+   font-family: 'Pacifico';
+}
+

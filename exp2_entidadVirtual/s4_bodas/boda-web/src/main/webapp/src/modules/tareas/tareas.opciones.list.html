@@ -1,0 +1,37 @@
+<div class="container-fluid">
+     <div>
+            <center>
+            <h2>Lista de tareas</h2>
+             </center>
+        </div>
+    <div class="row">
+        
+        
+               <div  class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom: 3%;margin-left: 2%">
+                        <a class="botones" ui-sref="tareaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar tarea</a>                  
+                </div>
+             
+        <div class="col-md-2" ng-repeat="tarea in tareasRecords">
+            <div class="thumbnail">
+              
+           
+                    <img class="img-responsive" ng-src='{{tarea.image}}' alt="{{tarea.nombre}}" style ="height: 200px;width: 100%;"/>                  
+                
+                <div class="caption text-center">
+                     <h3 >
+                       {{tarea.nombre}}
+                     
+                    
+                     </h3>
+                    <a ui-sref="ubicacionDetail({ubicacionId: tarea.ubicacion.id})">{{tarea.ubicacion.name}}</a>
+                
+                </div>
+         
+            </div>
+        </div>
+       
+    </div>
+  
+</div>
+
+

@@ -16,6 +16,10 @@ and open the template in the editor.
 .form-title{
     text-align: center;
 }
+.form-title-image{
+    display:block;
+    margin:auto;
+}
 .footer {
     margin-top: 50px;
     position: relative;
