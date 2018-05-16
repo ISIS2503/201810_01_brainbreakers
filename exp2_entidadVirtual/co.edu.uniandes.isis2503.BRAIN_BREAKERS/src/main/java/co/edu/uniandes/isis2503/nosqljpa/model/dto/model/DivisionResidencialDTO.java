@@ -33,17 +33,24 @@ public class DivisionResidencialDTO {
     private String nombre;
     private List<String> residencias;
     private String unidadResidencial;
+    private long latitud;
+    private long longitud;
+  
+
     
     public DivisionResidencialDTO ()
     {
         residencias = new ArrayList<>();
     }
     
-    public DivisionResidencialDTO (String pNombre, String pUnidad)
+    public DivisionResidencialDTO (String pNombre, String pUnidad, long pLatitud, long pLongitud)
     {
         this.nombre = pNombre;
         this.unidadResidencial = pUnidad;
         residencias = new ArrayList<>();
+        latitud = pLatitud;
+        longitud = pLongitud;
+        
     }
 
     public String getNombre() {
@@ -73,5 +80,24 @@ public class DivisionResidencialDTO {
      public void agregarResidencia(String residencia) {
         residencias.add(residencia);
     }
+
+    public long getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(long latitud) {
+        this.latitud = latitud;
+    }
+
+    public long getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(long longitud) {
+        this.longitud = longitud;
+    }
+
+     
+    
 
 }

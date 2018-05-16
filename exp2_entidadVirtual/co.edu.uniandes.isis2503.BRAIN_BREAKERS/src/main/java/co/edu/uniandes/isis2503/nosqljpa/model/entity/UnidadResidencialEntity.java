@@ -46,11 +46,16 @@ public class UnidadResidencialEntity implements Serializable{
     @ElementCollection
     private List<String> divisionesResidenciales;
     
+    private long latitud;
+    private long longitud;
     
-    public UnidadResidencialEntity (String pNombre)
+    
+    public UnidadResidencialEntity (String pNombre, long pLatitud, long pLongitud)
     {
         nombre = pNombre;
         divisionesResidenciales = new ArrayList<>();
+        latitud = pLatitud;
+        longitud = pLongitud;
     }
 
     public String getNombre() {
@@ -75,5 +80,23 @@ public class UnidadResidencialEntity implements Serializable{
     {
         divisionesResidenciales = pDivisionesResidenciales; 
     }
+
+    public long getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(long latitud) {
+        this.latitud = latitud;
+    }
+
+    public long getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(long longitud) {
+        this.longitud = longitud;
+    }
+     
+     
     
 }

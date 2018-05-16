@@ -47,15 +47,20 @@ public class DivisionResidencialEntity implements Serializable{
     
     private String unidadResidencial;
     
+    private long latitud;
+    private long longitud;
+    
     @ElementCollection
     private List<String> residencias;
     
-    public DivisionResidencialEntity (String pNombre, String pUnidad)
+    public DivisionResidencialEntity (String pNombre, String pUnidad, long pLatitud, long pLongitud)
     {
         String llave = pNombre+"_"+pUnidad;
         nombre = llave;
         unidadResidencial = pUnidad;
-        residencias =  new ArrayList<>();
+        residencias =  new ArrayList<String>();
+        latitud = pLatitud;
+        longitud = pLongitud;
     }
 
     public String getNombre() {
@@ -86,6 +91,21 @@ public class DivisionResidencialEntity implements Serializable{
     {
         residencias.add(residencia);
     }
-   
- 
+
+    public long getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(long latitud) {
+        this.latitud = latitud;
+    }
+
+    public long getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(long longitud) {
+        this.longitud = longitud;
+    }
+
 }

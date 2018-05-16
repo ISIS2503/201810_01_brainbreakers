@@ -43,22 +43,22 @@ public class ResidenciaDTO {
     
     private List<String> ususarios;
     
-    private int numeroClaves;
+    private int numeroContacto;
 
     public ResidenciaDTO() {
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
         ususarios = new ArrayList<>();
-        numeroClaves = 0;
+        numeroContacto = 0;
     }
 
-    public ResidenciaDTO(String pNombre, String pBarrio) {
+    public ResidenciaDTO(String pNombre, String pBarrio,int pNumeroContacto) {
         nombre =pNombre;
         barrio = pBarrio;
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
         ususarios = new ArrayList<>();
-        numeroClaves = 0;
+        numeroContacto = pNumeroContacto;
     }
         public List<String> getUsusarios() {
         return ususarios;
@@ -115,12 +115,12 @@ public class ResidenciaDTO {
         horarios.add(horario);
     }
 
-    public int getNumeroClaves() {
-        return numeroClaves;
+    public int getNumeroContacto() {
+        return numeroContacto;
     }
 
-    public void setNumeroClaves(int numeroClaves) {
-        this.numeroClaves = numeroClaves;
+    public void setNumeroContacto(int pNumeroContacto) {
+        this.numeroContacto = pNumeroContacto;
     }
     
     public void deleteUsuario(String usuario)

@@ -43,6 +43,7 @@ public class UserEntity {
     
     private String contraseña;
     
+    
     public UserEntity (String pCorreo, String pContraseña)
     {
         correo = pCorreo;

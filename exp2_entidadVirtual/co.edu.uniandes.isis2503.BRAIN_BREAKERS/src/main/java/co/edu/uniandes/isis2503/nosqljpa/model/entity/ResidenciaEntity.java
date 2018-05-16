@@ -44,7 +44,7 @@ public class ResidenciaEntity implements Serializable {
     @Id
     private String nombre;    
     private String barrio;
-    
+      
     @ElementCollection
     private List<String> alertas;
     
@@ -54,16 +54,17 @@ public class ResidenciaEntity implements Serializable {
     @ElementCollection
     private List<String> ususarios;
     
-    private int numeroClaves;
+    private int numeroContacto;
     
-    public ResidenciaEntity (String pNombre, String pBarrio)
+    public ResidenciaEntity (String pNombre, String pBarrio,int pNumeroContacto)
     {
         nombre =pNombre;
         barrio = pBarrio;
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
         ususarios = new ArrayList<>();
-        numeroClaves = 0;
+        numeroContacto = pNumeroContacto;
+      
     }
 
     public List<String> getUsusarios() {
@@ -120,12 +121,12 @@ public class ResidenciaEntity implements Serializable {
         horarios.add(horario);
     }
 
-    public int getNumeroClaves() {
-        return numeroClaves;
+    public int getNumeroContacto() {
+        return numeroContacto;
     }
 
-    public void setNumeroClaves(int numeroClaves) {
-        this.numeroClaves = numeroClaves;
+    public void setNumeroContacto(int numeroClaves) {
+        this.numeroContacto = numeroClaves;
     }
     
     public void updateHorario(String viejo, String nuevo)
@@ -159,5 +160,6 @@ public class ResidenciaEntity implements Serializable {
     {
         ususarios.remove(usuario);
     }
+
 
 }
