@@ -34,3 +34,8 @@ and open the template in the editor.
 .footer-name {
     margin-top: 20px;
 }
+
+.form-title-image{
+    display:block;
+    margin:auto;
+}
