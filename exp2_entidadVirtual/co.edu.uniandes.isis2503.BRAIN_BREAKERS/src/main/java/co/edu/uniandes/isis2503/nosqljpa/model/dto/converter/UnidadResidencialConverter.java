@@ -43,6 +43,10 @@ public class UnidadResidencialConverter implements IUnidadResidencialConverter {
         UnidadResidencialDTO dto = new UnidadResidencialDTO();
         dto.setNombre(entity.getNombre());
         dto.setDivisionesResidenciales(entity.getDivisionesResidenciales());
+        dto.setAdministradores(entity.getAdministradores());
+        dto.setLatitud(entity.getLatitud());
+        dto.setLongitud(entity.getLongitud());
+        dto.setSeguridad(entity.getSeguridad());
         return dto; 
     }
 
@@ -50,6 +54,8 @@ public class UnidadResidencialConverter implements IUnidadResidencialConverter {
     public UnidadResidencialEntity dtoToEntity(UnidadResidencialDTO dto) {
         UnidadResidencialEntity entity = new UnidadResidencialEntity(dto.getNombre(), dto.getLatitud(), dto.getLongitud());
         entity.setDivisionesResidenciales(dto.getDivisionesResidenciales());
+        entity.setAdministradores(dto.getAdministradores());
+        entity.setSeguridad(dto.getSeguridad());
         return entity;
     }
 
