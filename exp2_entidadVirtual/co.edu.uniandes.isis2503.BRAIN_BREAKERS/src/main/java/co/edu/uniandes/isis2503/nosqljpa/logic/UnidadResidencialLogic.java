@@ -64,7 +64,7 @@ public class UnidadResidencialLogic implements IUnidadResidencialLogic {
         if (buscada == null) {
             throw new Exception("No hay unidad residencial con ese nombre");
         }
-        DivisionResidencialDTO agregar = new DivisionResidencialDTO(division, nombreUnidad);
+        DivisionResidencialDTO agregar = new DivisionResidencialDTO(division, nombreUnidad, buscada.getLatitud(), buscada.getLongitud());
         logicDR.add(agregar);
         buscada.agregarDivisionResidenciales(division);
         update(buscada);
@@ -90,7 +90,7 @@ public class UnidadResidencialLogic implements IUnidadResidencialLogic {
         }
         System.out.println("PASO1111*********************************************************");
         key = residencia+"_"+divison+"_"+nombreUnidad;
-        logicR.add(new ResidenciaDTO(key, barrio));
+        logicR.add(new ResidenciaDTO(key, barrio, 0));
         divisionBuscado.agregarResidencia(residencia);
         System.out.println("PASO2222*********************************************************");
         logicDR.update(divisionBuscado);
