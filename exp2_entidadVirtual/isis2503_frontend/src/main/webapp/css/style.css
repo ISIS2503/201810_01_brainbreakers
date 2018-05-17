@@ -113,8 +113,8 @@ header{
 .botones
 {
  border: none;
- background: #F48FB1;
- color: #FACC2E;
+ background: #FACC2E;
+ color: black;
  padding: 10px;
  border-radius: 5px;
  position: relative;
