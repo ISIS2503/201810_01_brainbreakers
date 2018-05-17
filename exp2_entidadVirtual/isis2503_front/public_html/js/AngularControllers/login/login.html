@@ -1,0 +1,75 @@
+<!-- Sitio del slide show -->
+<div style="margin-bottom: 5%;">
+        <div class="row" style="width: 100%; ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div id="carousel-1" class="carousel slide" data-ride="carousel">
+
+                    <!-- Indicadores -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-1" data-slide-to="0" class="active" >  </li>
+                        <li data-target="#carousel-1" data-slide-to="1">  </li>
+                        <li data-target="#carousel-1" data-slide-to="2">  </li>
+                    </ol>             
+
+                    <!-- Contenedor de slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="resources/img/boda2.jpg" alt="Segundo Slide" />
+                            <div class="carousel-caption ">
+                                <h1 class="home-header-title">La mejor manera de organizar tu boda y hacer de este día el más especial de tu vida.</h1>
+                                <p>Las imagenes son de pixabay.com con licencia CC0 Creative Commons</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="resources/img/boda1mod.jpg" alt="Primer Slide" />
+                            <div class="carousel-caption ">
+                                <h1 class="home-header-title">Disfruta de la magia de estar enamorado y compártela con tus amigos y familiares.</h1>
+                                <p>Las imagenes son de pixabay.com con licencia CC0 Creative Commons</p> 
+                            </div>
+                        </div>
+                        <div class="item ">
+                            <img src="resources/img/boda3mod.jpg" alt="Tercer Slide" />
+                            <div class="carousel-caption ">
+                                <h1 class="home-header-title">Encuentra el vestido ideal para ti y todos los servicios que necesites para tu boda.</h1>
+                                <p>Las imagenes son de pixabay.com con licencia CC0 Creative Commons</p> 
+                            </div>
+                    </div>
+
+
+                    <a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+
+                    <a class="right carousel-control" href="#carousel-1" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+  </div>
+
+<div >
+<center>
+<div ng-if="!isAuthenticated()" class=" container container-fluid">
+    <form class="form-signin">
+        
+        <h1 class="form-signin-heading text-muted">Accede a tu cuenta</h1>
+        <input style="width:40%" type="text" class="form-control" placeholder="Usuario o correo" required="" autofocus="" ng-model="data.username">
+        <input style="width:40%" type="password" class="form-control" placeholder="Contraseña" required ng-model="data.password">
+        <select style="width:40%" class="form-control" name="singleSelect" id="singleSelect" required ng-model="data.rol">
+            <option value="">--- Por favor seleccione un rol ---</option> <!-- not selected / blank option -->
+            <option value="admin">Administrator</option>
+           <option value="pareja">Pareja</option>
+        </select>
+        <br>
+        <button class="botones" type="button" ng-click="autenticar()" style="width:10%;font-size:100%">
+        ¡Empecemos!
+        </button>
+        <input class="botones" type="reset" value="Limpiar" style="width:10%; font-size:100%">
+    </form>
+    <h4>¿Aún no estás registrado? <a ui-sref="parejasCreate">Regístrate</a></h4>
+</div>
+</center>
+</div>
