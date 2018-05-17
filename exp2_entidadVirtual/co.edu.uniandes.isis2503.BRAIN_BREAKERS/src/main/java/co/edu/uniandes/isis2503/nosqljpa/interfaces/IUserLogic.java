@@ -29,9 +29,10 @@ import java.util.List;
  * @author e.reyesm
  */
 public interface IUserLogic {
-    public UserDTO add(UserDTO dto, String residencia) throws Exception;
+    public UserDTO add(UserDTO dto, String residencia, String tipo) throws Exception;
     public UserDTO update(UserDTO dto);
     public UserDTO find(String id);
     public List<UserDTO> all();
-    public Boolean delete(String id, String residencia) throws Exception;
+    public boolean validarUsuarioSeguridad(String correo, String contraseña);
+    public Boolean delete(String id, String residencia, String tipo) throws Exception;
 }

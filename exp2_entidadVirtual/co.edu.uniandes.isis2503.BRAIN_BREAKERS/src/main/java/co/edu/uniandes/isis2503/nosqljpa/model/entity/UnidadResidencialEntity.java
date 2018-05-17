@@ -49,13 +49,77 @@ public class UnidadResidencialEntity implements Serializable{
     private long latitud;
     private long longitud;
     
+    private List<String> administradores;
+    private List<String> seguridad;
     
     public UnidadResidencialEntity (String pNombre, long pLatitud, long pLongitud)
     {
         nombre = pNombre;
         divisionesResidenciales = new ArrayList<>();
+        administradores = new ArrayList<>();
+        seguridad = new ArrayList<>();
         latitud = pLatitud;
         longitud = pLongitud;
+    }
+    
+    public void setSeguridad(List<String> pSeguridad)
+    {
+       seguridad = pSeguridad;
+    }
+    public List<String> getSeguridad()
+    {
+        return seguridad;
+    }
+    public String buscarSeguridad(String pSeguridad)
+    {
+        String segur = "";
+        for (int i = 0; i < this.seguridad.size() && segur.equals(""); i++) {
+            String actual = seguridad.get(i);
+            if(actual.equals(pSeguridad))
+            {
+                segur = actual;
+            }
+        }
+        
+        return segur;
+    }
+    public void agregarSeguridad (String pSeguridad)
+    {
+        seguridad.add(pSeguridad);
+    }
+    public void borrarSeguridad (String pSeguridad)
+    {
+        seguridad.remove(pSeguridad);
+    }
+    
+    public void setAdministradores(List<String> pAdministradores)
+    {
+       administradores = pAdministradores;
+    }
+    public List<String> getAdministradores()
+    {
+        return administradores;
+    }
+    public String buscarAdministrador(String pAdmin)
+    {
+        String admin = "";
+        for (int i = 0; i < administradores.size() && admin.equals(""); i++) {
+            String actual = administradores.get(i);
+            if(actual.equals(pAdmin))
+            {
+                admin = actual;
+            }
+        }
+        
+        return admin;
+    }
+    public void agregarAdministrador (String pAdmin)
+    {
+        administradores.add(pAdmin);
+    }
+    public void borrarAdministrador (String pAdmin)
+    {
+        administradores.remove(pAdmin);
     }
 
     public String getNombre() {
