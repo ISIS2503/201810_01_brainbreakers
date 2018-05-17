@@ -24,7 +24,9 @@
 
         <!--Dependencias Externas--> 
         <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />-->
-        <!--<script src="bower_components/angular/angular.js"></script>-->
+
+<!--        <script src="bower_components/angular/angular.js"></script>-->
+
         <!--<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>-->
         <!--<script src="bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>-->
 
@@ -38,13 +40,20 @@
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" href="css/style.css">
 
         <!-- login -->
         <script src="src\modulos\login\login.mod.js" ></script>
         <script src="src\modulos\login\login.ctrl.js" ></script>
         <script src="src\modulos\login\logout.ctrl.js" ></script>
+        
+        <!-- mapa -->
+        <script src="src\modulos\mapa\mapa.mod.js" ></script>
+        <script src="src\modulos\mapa\mapa.ctrl.js" ></script>
+
 
         <link rel="stylesheet" href="css/style.css">
+
     </head>
     <body>
         
@@ -63,7 +72,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Yale</a>
+                        <a class="navbar-brand" href="login">Yale</a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav " >
@@ -82,7 +91,9 @@
                         
             </nav>
         </header>
+
         <div ui-view="mainView" class=" ">
+
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
