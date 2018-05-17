@@ -2,11 +2,9 @@
     var mod = ng.module("loginModule");
     mod.controller('loginCtrl', ['$scope', '$http', '$state', '$rootScope',
         function ($scope, $http, $state, $rootScope) {
-
-            $scope.user = {};
-            $scope.data = {};
-
-
+              $scope.autenticar = function () {
+                 $state.go('mapa', {}, {reload: true});      
+              }
         }
     ]);
 }
