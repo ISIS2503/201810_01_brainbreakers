@@ -56,30 +56,16 @@
 
     </head>
     <body>
-        
-        <header class="page-header">
-
-
             <img class="form-title-image" src="img/Yale-logo-01-1.png"  alt="Imagen logo YALE" width="150" height="150"/> 
             <h1 class="titulo-principal">Yale, sistema de monitoreo de residencias</h1> 
             <nav class="navbar navbar-default navbar-static-top">
-                <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="login">Yale</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="container-fluid">
                         <ul class="nav navbar-nav " >
                         </ul>
                         <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
                             <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>Acceder</a></li>
-                             <li><button type="button" ui-sref="parejasCreate" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>Regístrate</button></li>
+                             <li><button type="button" ui-sref=" " class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>Regístrate</button></li>
                         </ul>
                         
                         <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
@@ -87,14 +73,10 @@
                             <li> <a ui-sref="logout">Logout</a></li>
                         </ul>
                     </div>
-                </div><!-- /.container-fluid -->
                         
             </nav>
-        </header>
 
         <div ui-view="mainView" class=" ">
-
-
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             
