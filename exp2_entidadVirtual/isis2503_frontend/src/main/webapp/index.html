@@ -26,7 +26,7 @@
         <!--Dependencias Externas--> 
         <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />-->
 
-<!--        <script src="bower_components/angular/angular.js"></script>-->
+        <!--        <script src="bower_components/angular/angular.js"></script>-->
 
         <!--<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>-->
         <!--<script src="bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>-->
@@ -47,42 +47,49 @@
         <script src="src\modulos\login\login.mod.js" ></script>
         <script src="src\modulos\login\login.ctrl.js" ></script>
         <script src="src\modulos\login\logout.ctrl.js" ></script>
-        
+
         <!-- mapa -->
         <script src="src\modulos\mapa\mapa.mod.js" ></script>
         <script src="src\modulos\mapa\mapa.ctrl.js" ></script>
+
+        <!-- casa -->
+        <script src="src\modulos\casa\casa.mod.js" ></script>
+        <script src="src\modulos\casa\casa.ctrl.js" ></script>
+        <script src="src\modulos\casa\casaAlerta1.ctrl.js" ></script>
+        <script src="src\modulos\casa\casaAlerta2.ctrl.js" ></script>
+        <script src="src\modulos\casa\casaAlerta3.ctrl.js" ></script>
+        <script src="src\modulos\casa\casaAlerta4.ctrl.js" ></script>
 
 
         <link rel="stylesheet" href="css/style.css">
 
     </head>
     <body>
-            <img class="form-title-image" src="img/Yale-logo-01-1.png"  alt="Imagen logo YALE" width="150" height="150"/> 
-            <h1 class="titulo-principal">Yale, sistema de monitoreo de residencias</h1> 
-            <nav class="navbar navbar-default navbar-static-top">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="container-fluid">
-                        <ul class="nav navbar-nav " >
-                        </ul>
-                        <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-                            <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>Acceder</a></li>
-                             <li><button type="button" ui-sref=" " class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>Regístrate</button></li>
-                        </ul>
-                        
-                        <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-                            <li> <p class="navbar-text">Hola, {{currentUser.name}}</p></li>
-                            <li> <a ui-sref="logout">Logout</a></li>
-                        </ul>
-                    </div>
-                        
-            </nav>
+        <img class="form-title-image" src="img/Yale-logo-01-1.png"  alt="Imagen logo YALE" width="150" height="150"/> 
+        <h1 class="titulo-principal">Yale, sistema de monitoreo de residencias</h1> 
+        <nav class="navbar navbar-default navbar-static-top">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container-fluid">
+                <ul class="nav navbar-nav " >
+                </ul>
+                <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
+                    <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>Acceder</a></li>
+                    <li><a ui-sref="casa"><span class="glyphicon glyphicon-log-in"></span>Casa Detail</a></li>                        </ul>
+
+                <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
+                    <li> <p class="navbar-text">Hola, {{currentUser.name}}</p></li>
+                    <li> <a ui-sref="logout">Logout</a></li>
+                </ul>
+            </div>
+
+        </nav>
 
         <div ui-view="mainView" class=" ">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            
+
         </div>
-     
+
     </body>
 </html>
 

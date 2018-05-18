@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
+
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +33,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author e.reyesm
  */
 public class ResidenciaDTO {
-   
+
     private String nombre;
-    
+
     private String barrio;
 
     private List<String> alertas;
-  
+
     private List<String> horarios;
-    
+
     private List<String> ususarios;
-    
+
     private int numeroContacto;
 
     public ResidenciaDTO() {
@@ -52,26 +53,28 @@ public class ResidenciaDTO {
         numeroContacto = 0;
     }
 
-    public ResidenciaDTO(String pNombre, String pBarrio,int pNumeroContacto) {
-        nombre =pNombre;
+    public ResidenciaDTO(String pNombre, String pBarrio, int pNumeroContacto) {
+        nombre = pNombre;
         barrio = pBarrio;
         alertas = new ArrayList<>();
         horarios = new ArrayList<>();
         ususarios = new ArrayList<>();
         numeroContacto = pNumeroContacto;
     }
-        public List<String> getUsusarios() {
+
+    public List<String> getUsusarios() {
         return ususarios;
     }
 
     public void setUsusarios(List<String> ususarios) {
         this.ususarios = ususarios;
     }
-    public void agregarUsuario(String pUsuario)
-    {
+
+    public void agregarUsuario(String pUsuario) {
         ususarios.add(pUsuario);
     }
-     public String getNombre() {
+
+    public String getNombre() {
         return nombre;
     }
 
@@ -86,19 +89,28 @@ public class ResidenciaDTO {
     public void setBarrio(String barrio) {
         this.barrio = barrio;
     }
-    
-    
 
     public List<String> getAlertas() {
         return alertas;
     }
 
+    public List<String> getAlertasTipo(String tipo) {
+        List<String> retornar = new ArrayList<>();
+        for (int i = 0; i < alertas.size(); i++) {
+            String actual = alertas.get(i);
+            if (actual.equals(tipo)) {
+                retornar.add(actual);
+            }
+        }
+
+        return retornar;
+    }
+
     public void setAlertas(List<String> alertas) {
         this.alertas = alertas;
     }
-    
-    public void agregarAlerta(String alerta)
-    {
+
+    public void agregarAlerta(String alerta) {
         alertas.add(alerta);
     }
 
@@ -109,9 +121,8 @@ public class ResidenciaDTO {
     public void setHorarios(List<String> horarios) {
         this.horarios = horarios;
     }
-    
-    public void agregarHorario(String horario)
-    {
+
+    public void agregarHorario(String horario) {
         horarios.add(horario);
     }
 
@@ -122,9 +133,8 @@ public class ResidenciaDTO {
     public void setNumeroContacto(int pNumeroContacto) {
         this.numeroContacto = pNumeroContacto;
     }
-    
-    public void deleteUsuario(String usuario)
-    {
+
+    public void deleteUsuario(String usuario) {
         ususarios.remove(usuario);
     }
 

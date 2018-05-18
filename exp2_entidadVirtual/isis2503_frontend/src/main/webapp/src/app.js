@@ -3,9 +3,8 @@
         // External dependencies
         'ui.router'
         ,'loginModule',
-        'mapaModule'
-
-
+        'mapaModule',
+        'casaModule'
     ]);
      // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

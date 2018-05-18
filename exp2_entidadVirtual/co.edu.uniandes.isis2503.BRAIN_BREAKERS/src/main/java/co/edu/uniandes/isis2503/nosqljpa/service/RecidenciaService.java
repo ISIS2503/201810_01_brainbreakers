@@ -82,6 +82,21 @@ public class RecidenciaService {
         return residenciaLogic.getAllAlertas();
     }
     
+    
+    @GET
+    //@Secured({Role.yale})
+    @Path("/alarmaByResidencia")
+    public List<AlertaDTO> getAllAlarmasByResidencia(@QueryParam("nombreR") String residencia) throws Exception {
+        return residenciaLogic.getAllAlertasByUnidad(residencia);
+    }
+    
+    @GET
+    //@Secured({Role.yale})
+    @Path("/alarmaByResidenciaAndTipo")
+    public List<AlertaDTO> getAllAlarmasByResidenciaByTipo(@QueryParam("nombreR") String residencia , @QueryParam("tipo") String tipo) throws Exception {
+        return residenciaLogic.getAllAlertasByUnidadAndAlerta(residencia, tipo);
+    }
+   
     @POST
     @Secured({Role.yale,Role.admin,Role.seguridad})
     @Path("/{nombreU}/consultarAlarmas")
