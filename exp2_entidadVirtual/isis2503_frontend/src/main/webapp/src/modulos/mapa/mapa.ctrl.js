@@ -3,53 +3,60 @@
     mod.constant("mapaContext", "api/divisiones");
     mod.controller('mapaCtrl', ['$scope', '$http', 'mapaContext', '$state', '$filter',
         function ($scope, $http, mapaContext, $state, $filter) {
-            $http.get(mapaContext).then(function (response) {
-                $scope.bodasRecords = response.data;
-            });
-            
-            if ($state.params.bodaId !== undefined) {
-                $http.get(mapaContext + '/' + $state.params.bodaId).then(function (response) {
-                   
-                    $scope.currentBoda = response.data;
-                    $scope.currentFecha = $scope.currentBoda.fecha;
-                   
-                        
-                    var estadoDetail = 'bodaDetail';
-                    if ($state.current.name === estadoDetail) {
-                        
-                        try {
-                             var fechita = $filter('date')($scope.currentBoda.fecha, 'medium', '');
-                            var countDownDate = new Date(fechita).getTime();
-                            var x = setInterval(function () {
-                                if($state.current.name !== estadoDetail )
-                                {
-                                    clearInterval(x);
-                                }                           
-                               
-                                var now = new Date().getTime();
-                                var distance = countDownDate - now;
-                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            setInterval(function () {
 
-                                document.getElementById("demo").innerHTML = days + "días " + hours + "horas " + minutes + "minutos " + seconds + "s ";
-
-                                if (distance < 0) {
-                                    clearInterval(x);
-                                    document.getElementById("demo").innerHTML = "Aún puedes aplazar la fecha";
-                                }
-                                
-                            }, 1000);
-                        } catch (err) {
-                        }
+                // Create the XHR object.
+                function createCORSRequest(method, url) {
+                    var xhr = new XMLHttpRequest();
+                    if ("withCredentials" in xhr) {
+                        // XHR for Chrome/Firefox/Opera/Safari.
+                        xhr.open(method, url, true);
+                    } else if (typeof XDomainRequest != "undefined") {
+                        // XDomainRequest for IE.
+                        xhr = new XDomainRequest();
+                        xhr.open(method, url);
+                    } else {
+                        // CORS not supported.
+                        xhr = null;
                     }
-                });
+                    return xhr;
+                }
 
+// Helper method to parse the title tag from the response.
+                function getTitle(text) {
+                    return text.match('<title>(.*)?</title>')[1];
+                }
 
-            }
+// Make the actual CORS request.
+                function makeCorsRequest() {
+                    // This is a sample server that supports CORS.
+                    var url = 'http://localhost:8086/mesurements';
 
-        }]);
+                    var xhr = createCORSRequest('GET', url);
+                    if (!xhr) {
+                        alert('CORS not supported');
+                        return;
+                    }
+
+                    // Response handlers.
+                    xhr.onload = function () {
+                        
+                    };
+
+                    xhr.onerror = function () {
+                        alert('Woops, there was an error making the request.');
+                    };
+                    xhr.addEventListener("load", function () {
+                        console.log(this.responseText);
+                    });
+                    xhr.send();
+                }
+                makeCorsRequest();
+            }, 3000);
+
+        }
+
+    ]);
 })(angular);
 
 
