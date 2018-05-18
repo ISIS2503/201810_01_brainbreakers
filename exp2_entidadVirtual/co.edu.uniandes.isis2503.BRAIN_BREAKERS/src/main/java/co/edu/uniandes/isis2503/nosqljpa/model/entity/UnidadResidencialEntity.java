@@ -49,7 +49,10 @@ public class UnidadResidencialEntity implements Serializable{
     private long latitud;
     private long longitud;
     
+    @ElementCollection
     private List<String> administradores;
+    
+    @ElementCollection
     private List<String> seguridad;
     
     public UnidadResidencialEntity (String pNombre, long pLatitud, long pLongitud)

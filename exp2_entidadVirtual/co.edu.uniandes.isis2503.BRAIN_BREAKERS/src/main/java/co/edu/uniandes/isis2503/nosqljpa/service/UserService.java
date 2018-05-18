@@ -77,7 +77,7 @@ public class UserService {
     @POST
     @Path("/add")
     public Response add(UserDTO dto, @QueryParam("residencia") String residencia, @QueryParam("tipo") String tipo) throws Exception {
-        usuarioLogic.add(dto, residencia, tipo);
+//        usuarioLogic.add(dto, residencia, tipo);
         HttpResponse<String> response = Unirest.post("https://brainbreakers.auth0.com/dbconnections/signup")
                 .header("content-type", "application/json")
                 .body("{\"client_id\":\"vJihRX7vDJpg-Y821hGreFqMoa2TAxmp\",\"email\":\"" + dto.getCorreo() + "\",\"password\":\"" + dto.getPassword() + "\",\"connection\":\"Username-Password-Authentication\"}")

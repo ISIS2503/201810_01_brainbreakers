@@ -45,9 +45,10 @@ public class Persistencer<T, PK> {
     protected EntityManager entityManager;
 
     public Persistencer() {
-
-        this.entityManager = JPAConnection.CONNECTION.getEntityManager();
-
+        System.out.println("ENTRA A CREAR CONEXION CON JPACONNECTION ------------------------------------------------");
+        JPAConnection jpa = new JPAConnection();
+        this.entityManager = jpa.getEntityManager();
+        System.out.println("SALE A CREAR CONEXION CON JPACONNECTION -------------------------------------------------");
     }
 
     public T add(T entity) {
