@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>INFO DE LA RESIDENCIA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="refresh" content="15" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1>INFO DE LAS ALERTAS POR CASA</h1>
+                    <div class="list-group">
+                        <a ui-sref="casa" class="list-group-item ">TODAS LAS ALARMAS</a>
+                        <a ui-sref="casaAlerta1" class="list-group-item ">ALARMA 1 : Bateria en estado critico</a>
+                        <a ui-sref="casaAlerta2" class="list-group-item active">ALARMA 2 : Puerta abierta mucho tiempo</a>
+                        <a ui-sref="casaAlerta3" class="list-group-item ">ALARMA 3 : Numero de intentos fallidos exedido</a>
+                        <a ui-sref="casaAlerta4" class="list-group-item ">ALARMA 4 : Presencia de agente sospechoso</a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="card mt-4">
+                        <img class="card-img-top img-fluid" src="img/imagenCasa.jpg" alt="imagen logo casa" width="900" height="400">
+                        <div class="card-body">
+                            <h1 class="card-title">INFORMACION DE LA RESIDENCIA</h3>
+                                <p class="card-text">
+                                    <br>Residencia: Apartamento-01_Tore-01_Cojunto-Lantana
+                                    <br>
+                                    <br>Numero contacto: 7568496
+                                </p>
+                        </div>
+                    </div>
+                    <div class="card card-outline-secondary my-4">
+                        <div class="card-header">
+                            <h3>Historial Alarmas </h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Alarma</th>    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="alerta in alertas">
+                                        <td id="{{$index}}-alarma">{{alerta.info}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>>
+    </body>
+</html>

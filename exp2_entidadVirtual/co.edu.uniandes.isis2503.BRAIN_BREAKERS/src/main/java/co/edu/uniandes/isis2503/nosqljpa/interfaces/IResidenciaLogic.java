@@ -40,6 +40,7 @@ public interface IResidenciaLogic {
     public List<ResidenciaDTO> all();
     public Boolean delete(String id);
     public List<AlertaDTO> getAllAlertas();
+    public List<AlertaDTO> getAllAlertasByUnidadAndAlerta(String nombreUnidad, String tipo);
     //public List<String> getAllHorarios(String id);
     public List<AlertaDTO> getAllAlertasByUnidad(String nombreUnidad);
     public void validarUsuario(String user, String nombreResidencia) throws Exception;

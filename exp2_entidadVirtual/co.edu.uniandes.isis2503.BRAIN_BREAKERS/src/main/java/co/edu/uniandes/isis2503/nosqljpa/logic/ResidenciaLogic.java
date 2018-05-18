@@ -103,6 +103,18 @@ public class ResidenciaLogic implements IResidenciaLogic {
     }
 
     @Override
+    public List<AlertaDTO> getAllAlertasByUnidadAndAlerta(String nombreUnidad, String tipo) {
+        ResidenciaDTO result = find(nombreUnidad);
+        List<AlertaDTO> retorno = new ArrayList<>();
+        List<String> alertas = result.getAlertasTipo(tipo);
+        for (int j = 0; j < alertas.size(); j++) {
+            retorno.add(new AlertaDTO(alertas.get(j)));
+        }
+
+        return retorno;
+    }
+    
+    @Override
     public ResidenciaDTO deleteHorario(String nombreResidencia, String pHorario) {
         ResidenciaEntity result = persistence.find(nombreResidencia);
         if (result != null) {
