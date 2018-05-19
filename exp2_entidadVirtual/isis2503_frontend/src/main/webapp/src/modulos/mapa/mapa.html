@@ -1,61 +1,83 @@
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><font color="#FACC2E">Seguridad privada</font></a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#"><font color="#FACC2E">Seguridad privada</font></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"><font color="#FACC2E">Divisiones</font></a></li>
+                <li><a href="#"><font color="#FACC2E">Residencias</font></a></li>
+                <li><a href="#"><font color="#FACC2E">Alertas</font></a></li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#"><font color="#FACC2E">Divisiones</font></a></li>
-        <li><a href="#"><font color="#FACC2E">Residencias</font></a></li>
-        <li><a href="#"><font color="#FACC2E">Alertas</font></a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
-  
+
 <div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <div class="well" style="height: 80%"> 
-        <p><h2>Filtrar por alerta</h2></p>
-        <div class="well">
-        <p>Acá va la información de una residencia</p>
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <div class="well" style="height: 80%"> 
+                <p><h2>Alertas</h2>
+
+                <div ng-ref="login" class="card text-white bg-danger mb-6">
+                    <div class="card-header">Puerta abierta</div>
+                    <div class="card-body" >
+                        <h5 class="card-title">Apartamento 1001</h5>
+                        <p class="card-text">Dueño: Carlos Santana</p>
+                    </div>
+                </div>
+
+                <div ng-ref="login" class="card text-white bg-danger mb-6"  >
+                    <div class="card-header">Bateria en estado critico</div>
+                    <div class="card-body" >
+                        <h5 class="card-title">Apartamento 709</h5>
+                        <p class="card-text">Dueño: John Cena</p>
+                    </div>
+                </div>
+
+                <div ng-ref="login" class="card text-white bg-danger mb-6"  >
+                    <div class="card-header">Número de intentos fallidos exedidos</div>
+                    <div class="card-body" >
+                        <h5 class="card-title">Apartamento 404</h5>
+                        <p class="card-text">Dueño: Catalina Villabona</p>
+                    </div>
+                </div>
+                
+                <div ng-ref="login" class="card text-white bg-danger mb-3" >
+                    <div class="card-header">Presencia de agente sospechoso</div>
+                    <div class="card-body" >
+                        <h5 class="card-title">Apartamento 1103</h5>
+                        <p class="card-text">Dueño: Alejandra Cortez</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>    
+        <div class="col-sm-8 text-left"> 
+            <div class="well" style="height: 80%"> 
+                <h3><b>Unidad Residencial:</b></h3>
+                <hr>
+                <img src="img/mapa.jpg" width="100%" height="50%">
+                <hr>
+            </div>
         </div>
-        <div class="well">
-        <p>Acá va la información de una residencia</p>
-        </div>
-        <div class="well">
-        <p>Acá va la información de una residencia</p>
-        </div>
-      </div>
-    </div>    
-    <div class="col-sm-8 text-left"> 
-      <div class="well" style="height: 80%"> 
-          <h3><b>Unidad residencial:</b></h3>
-      <hr>
-      <img src="img/mapa.jpg" width="100%" height="50%">
-      <hr>
-      <h3>Detalle</h3>
-      <p>...</p>
+        <div class="col-sm-2 sidenav">
+            <div class="well" style="height: 80%"> 
+                <h2>Residencias en alerta</h2>
+                <ul>
+                    <li><a href="#">Bateria baja</a></li>
+                    <li><a href="#">Puerta abierta</a></li>
+                    <li><a href="#">Clave incorrecta</a></li>
+                    <li><a href="#">Presencias inusuales</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col-sm-2 sidenav">
-    <div class="well" style="height: 80%"> 
-              <h2>Residencias en alerta</h2>
-              <ul>
-                  <li><a href="#">Bateria baja</a></li>
-                  <li><a href="#">Puerta abierta</a></li>
-                  <li><a href="#">Clave incorrecta</a></li>
-                  <li><a href="#">Presencias inusuales</a></li>
-              </ul>
-    </div>
-    </div>
-  </div>
 </div>
 
 <footer class="container-fluid text-center">

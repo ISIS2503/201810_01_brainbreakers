@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import json
 import time
 import threading
@@ -10,9 +9,7 @@ from flask_cors import CORS, cross_origin
 async_mode = None
  
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
-#app.config['SECRET_KEY'] = 'secret_thermalcomfort'
+app.config['SECRET_KEY'] = 'secret_thermalcomfort'
 current_mesurement = ''
  
 # Rutina que se ejecuta antes de la primera solicitud realizada por un cliente
@@ -21,15 +18,15 @@ current_mesurement = ''
 @app.before_first_request
 def activate_job():
     def background_thread_rest():
-        consumer = KafkaConsumer('alta.piso1.local1', group_id='temperature', bootstrap_servers=['localhost:8090'])
+        consumer = KafkaConsumer('Iot_topic', group_id='temperature', bootstrap_servers=['localhost:8090'])
         for message in consumer:
             json_data = json.loads(message.value.decode('utf-8'))
-            sensetime = json_data['sensetime']
-            sense = json_data['temperature']
+            sensetime = json_data.sensetime
+            sense = json_data.temperature
  
             payload = {
                 'time': sensetime,
-                'value': sense['data']
+                'value': sense
             }
             global current_mesurement
             current_mesurement = payload
@@ -45,10 +42,11 @@ def index():
 @app.route('/mesurements', methods=['GET'])
 @cross_origin()
 def get_mesurement():
-    response = Response(content_type='application/json', status=200,
-                        response=json.dumps([]))
+    global current_mesurement
+    response = Response(content_type='application/json', status=200,response=json.dumps(current_mesurement))
+    current_mesurement =''
     return response
  
 # Iniciar el servicio en el puerto 8086
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8086, debug=True)	
+    app.run(host='0.0.0.0', port=8086, debug=True)
