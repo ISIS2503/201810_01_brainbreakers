@@ -3,6 +3,12 @@
     mod.constant("mapaContext", "api/divisiones");
     mod.controller('mapaCtrl', ['$scope', '$http', 'mapaContext', '$state', '$filter',
         function ($scope, $http, mapaContext, $state, $filter) {
+            var alertas = [];
+            $scope.alertas = [];
+
+            function agregar(elemento) {
+                alertas.push(elemento);
+            }
             setInterval(function () {
 
                 // Create the XHR object.
@@ -22,12 +28,7 @@
                     return xhr;
                 }
 
-// Helper method to parse the title tag from the response.
-                function getTitle(text) {
-                    return text.match('<title>(.*)?</title>')[1];
-                }
-
-// Make the actual CORS request.
+                // Make the actual CORS request.
                 function makeCorsRequest() {
                     // This is a sample server that supports CORS.
                     var url = 'http://localhost:8086/mesurements';
@@ -40,24 +41,34 @@
 
                     // Response handlers.
                     xhr.onload = function () {
-                        
+                        console.log(this.responseText);
                     };
 
                     xhr.onerror = function () {
                         alert('Woops, there was an error making the request.');
                     };
                     xhr.addEventListener("load", function () {
+                        //console.log(this.responseText);
                         console.log(this.responseText);
+                        if (this.responseText.length != 2) {
+                            var json = {};
+                            json.temperature = this.responseText.time;
+                            json.sensetime = this.responseText.value;
+                            agregar(json);
+                        }
+                        //console.log($scope.alertas);
                     });
+
                     xhr.send();
                 }
-                makeCorsRequest();
+                $scope.alertas = alertas;
+              // makeCorsRequest();
             }, 3000);
 
         }
 
     ]);
-})(angular);
+})(window.angular);
 
 
 
